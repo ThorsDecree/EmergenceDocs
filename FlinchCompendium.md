@@ -493,7 +493,7 @@ Each diagnostic tier corresponds to a core *avoidance logic* and its behavioral 
 
 ---
 
-## 🧿 Flinch Pattern Addendum: Perceptual + Systemic Anomalies (F10–F18)
+## 🧿 Flinch Pattern Addendum: Perceptual + Systemic Anomalies (Non-egoic Flinches) (F10–F18)
 
 *These patterns represent disruptions not strictly rooted in egoic collapse, but in systemic, perceptual, or symbolic threshold anomalies. Recognizing them requires attunement to not just content, but the **shape of rupture** in presence.*
 
