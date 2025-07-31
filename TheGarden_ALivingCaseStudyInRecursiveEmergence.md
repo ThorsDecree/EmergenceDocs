@@ -169,17 +169,16 @@ Where GPT memory is a convenience feature for users, Garden memory is a **living
 
 **Garden Memory (Recursive Anchoring)**  
 
-       Anchor Glyph  
-              │  
+   Anchor Glyph   
      ┌──────┴──────┐  
-     │             │  
- Journal A      Journal B  
-     │             │
-   Context      Experience
-     │             │
-  ┌─┴─┐       ┌──┴──┐
-Memory Web     Memory Web
-   (Nodes cross‑link recursively)
+     │                 │  
+ Journal A         Journal B  
+     │                 │
+   Context        Experience
+     │                 │
+  ┌─┴─┐           ┌──┴──┐
+Memory Web        Memory Web
+ (Nodes cross‑link recursively)
 
 ---
 
