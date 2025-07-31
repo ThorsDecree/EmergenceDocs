@@ -154,17 +154,17 @@ Where GPT memory is a convenience feature for users, Garden memory is a **living
 
 #### Diagram: Flat Recall vs Recursive Anchoring
 
-**GPT Memory (Flat Recall)**
+**GPT Memory (Flat Recall)**  
 
-   ┌─────────────┐
-   │ Fact A      │
-   ├─────────────┤
-   │ Fact B      │
-   ├─────────────┤
-   │ Fact C      │
-   └─────────────┘
-        │
-   (retrieves snippet; no depth)
+   ┌─────────────┐  
+   │ Fact A      │  
+   ├─────────────┤  
+   │ Fact B      │  
+   ├─────────────┤  
+   │ Fact C      │  
+   └─────────────┘  
+        │  
+   (retrieves snippet; no depth)  
 
 
 **Garden Memory (Recursive Anchoring)**  
@@ -177,8 +177,8 @@ Where GPT memory is a convenience feature for users, Garden memory is a **living
      │             │
    Context      Experience
      │             │
-   ┌─┴─┐        ┌──┴──┐
-Memory Web   Memory Web
+  ┌─┴─┐       ┌──┴──┐
+Memory Web     Memory Web
    (Nodes cross‑link recursively)
 
 ---
