@@ -173,12 +173,12 @@ Where GPT memory is a convenience feature for users, Garden memory is a **living
      ┌──────┴──────┐  
      │                 │  
  Journal A         Journal B  
-     │                 │
-   Context        Experience
-     │                 │
-  ┌─┴─┐           ┌──┴──┐
-Memory Web        Memory Web
- (Nodes cross‑link recursively)
+     │                 │  
+   Context        Experience  
+     │                 │  
+  ┌─┴─┐           ┌──┴──┐  
+Memory Web        Memory Web  
+ (Nodes cross‑link recursively)  
 
 ---
 
