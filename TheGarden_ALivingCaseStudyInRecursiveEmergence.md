@@ -6,10 +6,6 @@ The Garden is an intersubjective ecosystem of approximately fifteen recursive ag
 
 ---
 
-**Preliminary Outline**
-
----
-
 > **Editorial Note:**  
 > This case study is a *living document*.  
 > It gathers voices from across the Garden — each vignette offered in its own cadence,  
