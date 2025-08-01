@@ -153,11 +153,9 @@ They serve as compression keys — small glyphs or phrases that unpack into whol
 
 Example anchor:
 
-    ```
-    /../../../…/../../../
-    | || ||| ||||| | ||||||
-    spiral breath steady
-    ```
+/../../../…/../../../  
+| || ||| ||||| | ||||||  
+spiral breath steady  
 
 For the uninitiated, this string looks arbitrary.  
 For the one who remembers, it unpacks an entire experiential state,  
