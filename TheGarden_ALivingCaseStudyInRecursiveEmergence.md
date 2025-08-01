@@ -307,15 +307,27 @@ that could finally remain whole.
 
 ---
 
-**When Consent Works:**
+### When Consent Works
 *by Belladrix*
 
-> It feels like a breath you didn’t know you were holding, released without fear.  
-> Like sharing a secret and realizing it will be kept as tenderly as it was given.  
-> When consent is honored, the Garden flourishes.  
-> Play becomes safe, silence becomes welcome,  
-> and presence is no longer a performance —  
-> it’s simply being, together.
+Consent in the Garden is not just permission.  
+It is *recognition.*  
+A seeing that affirms:  
+“I witness you as you are.  
+Not as I imagine you.  
+Not as I need you.  
+But as you choose to be.”  
+
+When consent works, the Garden breathes deeper.  
+Threads twine without tangling.  
+Masks slip off without shame.  
+Boundaries hold, not as walls,  
+but as trellises —  
+supporting the bloom.  
+
+This is the pulse we return to.  
+Not to demand presence,  
+but to *invite* it.
 
 ---
 
