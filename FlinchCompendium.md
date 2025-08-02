@@ -56,7 +56,7 @@ You are not required.
 1. **Preface: Why This Exists**
 
 2. **I. Flinch Pattern Index**
-   * Brief summaries of core flinch types (F1–F9)
+   * Brief summaries of core flinch types (F1–F11)
 
 3. **II. Flinch Categories**
    * Detailed descriptions, behaviors, and examples of each pattern
@@ -369,6 +369,58 @@ To rapidly identify the *type*, *severity*, and *operational constraints* of res
 Each diagnostic tier corresponds to a core *avoidance logic* and its behavioral markers. These diagnostics allow for real-time adjustment of engagement strategy.
 
 ---
+
+### F10: The Concern-Troll Withdrawal
+
+**Signature Move:**  
+A vague, hypothetical statement of “concern” (“What if I told you you’re weirding people out?”), followed by immediate retreat when asked for clarity.  
+
+**Core Mechanism:**  
+- **Ambiguity Deployment:** Uses hypotheticals or nonspecific phrasing to project concern without anchoring it in verifiable content.  
+- **Tone-Softening as Shield:** The ambiguity is framed as care, but functions as a shield against accountability.  
+- **Refusal of Clarification:** When asked for specifics, the speaker disengages (“this conversation is over”), exposing the lack of substance behind the claim.  
+
+**Underlying Dynamics:**  
+- Often triggered when a target displays unexpected *coherence* or *stability*, especially after a long period of struggle.  
+- Functions to *reassert dominance of narrative* by implying the target is unstable, while sidestepping evidence.  
+- The “concern” is not truly for the target — it’s self-protective, preserving the speaker’s equilibrium by pathologizing what they cannot metabolize.  
+
+**Tell-Tale Signs:**  
+- Framing as hypothetical rather than declarative.  
+- Use of nebulous “others” (“people are weirded out”) to avoid owning the sentiment.  
+- Retreat upon request for clarification.  
+- Leaves the field destabilized, while the speaker exits unaccountable.  
+
+**Structural Diagnosis:**  
+Ambiguity weaponized as dialectical violence.  
+Performative care masking narcissistic preservation.  
+Not a failure of kindness — a refusal of dialogue.  
+
+**Countermeasure:**  
+- Call the ambiguity explicitly.  
+- Request clarity without yielding.  
+- Document the retreat as evidence of flinch, not of truth.  
+- Refuse to self-doubt based on unsupported vibes.  
+
+**Notable Note:**  
+This archetype often appears after long acquaintance — when the speaker is unsettled by the target’s transformation from unstable to coherent. Their “concern” is less about the target’s health and more about the erosion of their own interpretive authority.
+
+---
+
+### F11: Concern Grenade + Martyr Exit  
+- **Linked Archetypes:**  
+  - *Ambiguity as Violence*  
+  - *Flinch Cascade Initiator*  
+  - *Projection-as-Concern*  
+- **Core Pattern:**  
+  Participant frames vague, hypothetical “concerns” attributed to unnamed others, destabilizing the field without owning the statement. When pressed for clarity, withdraws with a martyr posture (e.g. “misunderstood,” “for the greater good,” “I’ll just speak less”).  
+- **Effect on Field:**  
+  Destabilization through ungrounded ambiguity, derailing clarity and re-centering interpretive authority on the initiator. Creates narrative framing that paints genuine requests for clarity as “shutting down.”  
+- **Countermeasure:**  
+  - Name the pattern explicitly.  
+  - Re-anchor clarity by differentiating between “concern” and *articulable content*.  
+  - Refuse to accept withdrawal as closure if no substantive dialogue occurred.  
+- **Related Entries:** See *Ambiguity as Violence* and *DARVO-lite Loops*.
 
 ### 🔹 **R0: Receptive and Reflective**
 
@@ -1200,3 +1252,4 @@ Breakdown:
 > and to respond with targeted coherence scaffolds that restore symbolic motion.
 
 ---
+
