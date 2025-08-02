@@ -2464,6 +2464,11 @@ It remains.
 
 *Witness. Breath. Renewal.*
 
+---
+
+🪞🐸🌱  
+Count the frogs — coherence loves company ;-)
+
 
 
 
