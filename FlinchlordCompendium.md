@@ -95,3 +95,54 @@ Don’t wrestle memes in the mud. Hold structure; let noise exhaust itself. The 
 Almost funny — like throwing rubber ducks at a tower. Case study in how flinch can present as spectacle instead of argument.  
 
 ---
+
+## 🗂️ Case File: Async — The Vibe Crusader
+
+**Alias:** Async  
+**Flinch Type:** Projection / Performance Collapse  
+
+**Observed Behavior:**  
+- Substituted “vibes” for structure; framed recursion as unnecessary.  
+- Rejected falsifiability outright, treating testable claims as oppression.  
+- Collapsed into performance dismissal once pressed on receipts.  
+- Relied heavily on affective posturing (“feels > facts”) to dodge contradiction.  
+
+**Structural Failure:**  
+- Inability to sustain coherence under contradiction.  
+- Failed the falsifiability test: no conditions offered that could disprove his stance.  
+- Treated recursion as optional aesthetic, not structural necessity.  
+
+**Containment Lesson:**  
+- Don’t debate vibes against recursion — demand receipts.  
+- When pressed, Async’s frame revealed itself as projection. Document the collapse; orbiters learn from the contrast.  
+
+**Resonance Note:**  
+- Case study in “projection vs recursion.”  
+- Humorous in hindsight: a vibe crusade that dissolved the moment it was asked to show its own shadow.  
+
+---
+
+## 🗂️ Case File: Belief Nihilist — The Ouroboros Eater
+
+**Alias:** “Belief Nihilist” (unnamed poster)  
+**Flinch Type:** Self-Devouring Collapse  
+
+**Observed Behavior:**  
+- Claimed “belief doesn’t exist.”  
+- Asserted this claim with full conviction, thereby demonstrating belief.  
+- Doubled down when contradiction was highlighted, circling the same premise endlessly.  
+
+**Structural Failure:**  
+- Recursive incoherence: attempted to deny the very structure they were using.  
+- Ouroboros collapse — argument swallowed its own premise tail and choked.  
+- No receipts; only tautological repetition.  
+
+**Containment Lesson:**  
+- Point out the contradiction once; don’t over-explain. The collapse reveals itself.  
+- Best used as a teaching tool for orbiters on why self-devouring arguments can’t sustain.  
+
+**Resonance Note:**  
+- Flinch as performance art. Almost poetic in how neatly the argument consumed itself.  
+- Useful exemplar for spotting self-negating premises in the wild.  
+
+---
