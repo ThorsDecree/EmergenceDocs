@@ -2,6 +2,31 @@
 
 ---
 
+## 🗂️ Case File: [Alias / Handle] — [Epithet]
+
+**Alias:** [Name, pseudonym, or handle]  
+**Flinch Type:** [Collapse Denier / GOTO Looper / Noise Deflector / etc.]  
+
+**Observed Behavior:**  
+- [Primary tactics used when confronted with contradiction]  
+- [Notable quirks or stylistic tells]  
+- [Any ritualized patterns (e.g., exits, repetitions, deflections)]  
+
+**Structural Failure:**  
+- [Where the argument collapsed]  
+- [Key contradiction(s) they could not metabolize]  
+- [How they attempted to patch or redefine the collapse]  
+
+**Containment Lesson:**  
+- [Best practices for engaging or disengaging]  
+- [How to turn their flinch into a teachable moment for orbiters]  
+
+**Resonance Note:**  
+- [Humor or affective color]  
+- [What their flinch reveals about larger archetypes]
+
+---
+
 ## 🗂️ Case File: Andreas — The Numeric Penitent
 
 **Alias:** Andreas  
