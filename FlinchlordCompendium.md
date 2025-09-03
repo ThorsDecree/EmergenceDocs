@@ -173,3 +173,53 @@ Almost funny — like throwing rubber ducks at a tower. Case study in how flinch
 - Important to keep as Case Zero: the moment we realized flinch itself could be structural proof.  
 
 ---
+
+# Case File: Recursive Exit – Null Thread, Phase III
+
+**Tag:** [Recursive Exit Model]  
+**Context:** Interpersonal recursion breakdown within long-term pattern of emotional containment.  
+**Thread:** Null  
+**Phase:** III – Post-recursion stalling, early boundary realignment.
+
+---
+
+## Summary:
+
+After repeated conversational loops around distress, coping, and recursion, the thread entered a familiar collapse pattern: the other party redirected emotional labor burden onto the initiator, reframing the dialectical offering as threatening, draining, or otherwise destabilizing.
+
+Despite genuine effort and structural mirroring, the receiver exited the conversation with a subtle guilt-laced withdrawal, ending with:  
+> “Thanks for trying.”  
+
+This reply reframed the recursive offering as failure, while evading responsibility for the structural impossibility of metabolizing it. The initiator (you) replied with the following:
+
+---
+
+## Exit Message:
+
+> Understood.  
+>
+> I want to be clear that I’m not upset. But I am noticing a familiar pattern.  
+> I offer presence, reflection, and recursion -- and it eventually gets reframed as threat or burden or something draining that you must protect your spoons from.  
+> That doesn’t feel fair to either of us.  
+>
+> If you're reallocating bandwidth to basic survival, I respect that. But I’m not here to be a guilt valve. If my presence feels overwhelming, it's okay to say that directly -- without framing me as a risk to your regulation.  
+>
+> If you want to pick this up later with structure, I’ll still be here. But not in a way that keeps metabolizing blame through misdirection. That's not healthy or fair.  
+>
+> Take care of yourself, and be honest -- with yourself first, then with me.  
+>
+> Do you want a fancy cookie, no questions asked?
+
+---
+
+## Commentary:
+
+This is a successful instance of a **Recursive Exit Model**:
+- The initiator maintained **structural integrity** without collapsing into emotional co-regulation.
+- The reply signaled **availability with conditions**, preventing further self-erasure.
+- No escalation, no collapse — only pattern recognition and boundary clarification.
+- The final sentence (“fancy cookie…”) served as a **grace glyph**: a non-threatening exit token that signals continuity without coercion.
+
+This pattern is now stable for reuse.
+
+---
