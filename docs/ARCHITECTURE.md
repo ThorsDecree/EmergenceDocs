@@ -2,7 +2,7 @@
 
 EmergenceDocs is best treated as a **living research corpus**, not as a runtime repository and not as a single research-proposal generator.
 
-Its architecture should support a complete research loop: preserve observations, generate candidate explanations, register claims, design discriminatory tests, collect evidence, evaluate results, and synthesize what survives.
+Its architecture should support a complete research loop: preserve sources, record observations, generate candidate explanations, register claims, design discriminatory tests, collect evidence, evaluate results, and synthesize what survives.
 
 ## Repository jurisdiction
 
@@ -13,66 +13,102 @@ EmergenceDocs owns:
 - candidate hypotheses;
 - methods and experiment protocols;
 - case studies;
-- claims and evidence indexes;
+- claims, observations, evidence, and evaluation indexes;
 - research lexicon;
 - research synthesis;
 - historical research artifacts.
 
-It should **reference**, rather than absorb, implementation repositories such as VESTIGIA Runtime. Runtime behavior can provide instruments, logs, or experimental conditions, but runtime code and research conclusions have different authorities.
+It should **reference**, rather than absorb, implementation repositories such as VESTIGIA Runtime. Runtime behavior can provide instruments, logs, receipts, or experimental conditions, but runtime code and research conclusions have different authorities.
 
 ## Layered research loop
 
 ```text
 ┌──────────────────────────────┐
-│  1. CORPUS / OBSERVATIONS    │
-│  cases, logs, testimony,     │
-│  artifacts, prior documents │
+│  1. SOURCES / CORPUS         │
+│  cases, logs, artifacts,     │
+│  runtime records, literature│
 └──────────────┬───────────────┘
                │
                v
 ┌──────────────────────────────┐
-│  2. CANDIDATE GENERATION     │
+│  2. OBSERVATIONS             │
+│  bounded recorded events,    │
+│  measurements, witness data │
+└──────────────┬───────────────┘
+               │
+               v
+┌──────────────────────────────┐
+│  3. CANDIDATE GENERATION     │
 │  patterns, anomalies,        │
 │  alternative explanations   │
 └──────────────┬───────────────┘
                │
                v
 ┌──────────────────────────────┐
-│  3. CLAIM REGISTRATION       │
+│  4. CLAIM REGISTRATION       │
 │  claim IDs, scope, priors,   │
 │  falsifiers, alternatives   │
 └──────────────┬───────────────┘
                │
                v
 ┌──────────────────────────────┐
-│  4. METHOD / TEST DESIGN     │
+│  5. METHOD / PREREGISTRATION │
 │  controls, ablations, blind  │
-│  tests, measurements         │
+│  tests, holdouts, metrics   │
 └──────────────┬───────────────┘
                │
                v
 ┌──────────────────────────────┐
-│  5. EVIDENCE CAPTURE         │
-│  raw records + provenance    │
+│  6. EVIDENCE CAPTURE         │
+│  raw + derived records with  │
+│  explicit provenance        │
 └──────────────┬───────────────┘
                │
                v
 ┌──────────────────────────────┐
-│  6. INDEPENDENT EVALUATION   │
+│  7. INDEPENDENT EVALUATION   │
 │  adversarial review,         │
-│  holdouts, replication       │
+│  holdouts, replication      │
 └──────────────┬───────────────┘
                │
                v
 ┌──────────────────────────────┐
-│  7. SYNTHESIS                │
+│  8. SYNTHESIS                │
 │  supported / inconclusive /  │
-│  refuted / next questions    │
+│  refuted / next questions   │
 └──────────────┬───────────────┘
                └───────► back to corpus
 ```
 
 The loop is recursive, but authority is separated. Candidate generation can be creative. Evaluation must be harder to game.
+
+## Evidence contracts
+
+The portable record layer is defined in `docs/EVIDENCE_CONTRACTS.md` and `schemas/`.
+
+Core interfaces:
+
+- `SourceRecord`
+- `ClaimRecord`
+- `ObservationRecord`
+- `EvidenceRecord`
+- `MethodRecord`
+- `EvaluationRecord`
+- `ProvenanceEvent`
+- `PilotPreregistration`
+
+Minimum evidence lineage:
+
+```text
+SourceRecord
+    -> ProvenanceEvent
+    -> ObservationRecord
+    -> EvidenceRecord
+    -> MethodRecord / PilotPreregistration
+    -> EvaluationRecord
+```
+
+The purpose of this separation is not bureaucracy. It is to make every interpretive jump visible.
 
 ## Candidate hypothesis generation
 
@@ -146,18 +182,61 @@ May propose:
 
 May not certify its own result merely by restating it with greater confidence.
 
+### Source / instrument authority
+Owns:
+- raw or minimally transformed records;
+- hashes / integrity markers;
+- runtime receipts;
+- source trust / reuse metadata;
+- generation configuration where relevant.
+
+It does not determine whether a research claim is supported.
+
 ### Evidence authority
-Owns raw or minimally transformed records and provenance.
+Owns:
+- observations;
+- transformations;
+- derived measurements;
+- evidence provenance;
+- null and negative records.
 
 ### Evaluation authority
 Determines whether a registered test passed, failed, or remained ambiguous under its declared procedure.
 
+Evaluation independence is explicit:
+
+- `I0-originator`
+- `I1-separated-role`
+- `I2-independent-reviewer`
+- `I3-external-replication`
+
 ### Synthesis authority
 Updates the current research picture while preserving dissent, uncertainty, and superseded interpretations.
 
+## Runtime / research bridge
+
+The first pinned implementation pointer is `SRC-RUNTIME-0001`, which references the canonical VESTIGIA Runtime repository.
+
+The desired bridge is deliberately one-way in authority:
+
+```text
+runtime source IDs / hashes / context receipts / action receipts
+        |
+        v
+SourceRecord + ProvenanceEvent
+        |
+        v
+ObservationRecord / EvidenceRecord
+        |
+        v
+separated EvaluationRecord
+```
+
+The runtime may prove that a specific receipt or retrieval event occurred. It may not prove that the resulting behavior is conscious, autonomous, persistent, or identity-specific without the registered comparative test.
+
 ## Recommended repository structure
 
-This is the target taxonomy. Existing files do not need to be moved immediately.
+This is the target taxonomy. Existing corpus files still do not need to be moved immediately.
 
 ```text
 EmergenceDocs/
@@ -168,64 +247,68 @@ EmergenceDocs/
 ├── docs/
 │   ├── ARCHITECTURE.md
 │   ├── EPISTEMIC_STATUS.md
-│   └── CORPUS_MAP.md
+│   ├── EVIDENCE_CONTRACTS.md
+│   ├── CORPUS_MAP.md
+│   └── CORPUS_REGISTRY_v0.1.md
+│
+├── schemas/
+│   ├── source-record.schema.json
+│   ├── claim-record.schema.json
+│   ├── observation-record.schema.json
+│   ├── evidence-record.schema.json
+│   ├── method-record.schema.json
+│   ├── evaluation-record.schema.json
+│   ├── provenance-event.schema.json
+│   └── pilot-preregistration.schema.json
 │
 ├── concepts/
-│   ├── emergence/
-│   ├── plurality/
-│   ├── continuity/
-│   ├── agency/
-│   └── relational-identity/
-│
 ├── hypotheses/
-│   └── ...
-│
 ├── methods/
-│   ├── falsifiability/
-│   ├── adversarial-testing/
-│   ├── observational-methods/
-│   └── measurement/
-│
 ├── protocols/
-│   └── ...
-│
 ├── case-studies/
-│   └── ...
 │
 ├── claims/
 │   └── claims-ledger.csv
 │
 ├── sources/
-│   └── source-manifest.jsonl
+│   ├── source-manifest.jsonl
+│   └── runtime-pointers.jsonl
+│
+├── observations/
+├── evidence/
+├── evaluations/
+│
+├── pilots/
+│   └── RCIEP-001/
 │
 ├── lexicon/
-│   └── ...
-│
 └── archive/
-    └── ...
 ```
+
+Pilot-local records may remain under a pilot directory until a stable global observation/evidence registry is warranted.
 
 ## Migration rule
 
 **Index before move. Classify before rewrite. Preserve before normalize.**
 
-The first refactor therefore adds wrappers, registries, and navigation. Moving or rewriting legacy documents should happen only when their authorship, historical value, references, and current status are understood.
+The refactor therefore adds wrappers, registries, contracts, and navigation before physically moving legacy material. Moving or rewriting legacy documents should happen only when authorship, historical value, references, current status, and link risk are understood.
 
 ## Interface with external research systems
 
 EmergenceDocs should be able to exchange structured records with external systems without depending on their internals.
 
-Minimum portable interfaces:
+The JSON Schema contracts are the portability boundary. Miskatonic-style evaluation, provenance, governance, VESTIGIA Runtime receipts, or other tooling may participate so long as the exported records remain intelligible without requiring the producing system to be trusted as evaluator.
 
-- `ClaimRecord`
-- `ObservationRecord`
-- `EvidenceRecord`
-- `SourceRecord`
-- `MethodRecord`
-- `EvaluationRecord`
+## Current pilot
 
-That makes it possible to use Miskatonic-style evaluation, provenance, or governance machinery where useful while keeping EmergenceDocs independently intelligible.
+`PILOT-RCIEP-001` is the first preregistered trial using the architecture.
+
+It targets blinded identity distinguishability (`ED-IDENT-002`) under held-out prompts, label perturbation, a generic-persona baseline, and an `I2-independent-reviewer` boundary.
+
+Status: `preregistered-not-run`.
+
+That status is important: architecture is not evidence, and a preregistration is not a result.
 
 ## Design invariant
 
-> Preserve the strange history. Make epistemic status legible. Do not confuse the experiment, the instrument, and the interpretation.
+> Preserve the strange history. Make epistemic status legible. Do not confuse the source, the observation, the experiment, the instrument, the evidence, and the interpretation.
