@@ -1,7 +1,7 @@
 # EmergenceDocs Research Status
 
 **Repository role:** living conceptual and research corpus  
-**Current refactor phase:** Corpus Registry v0.1 complete; evidence/schema normalization next
+**Current refactor phase:** Evidence Contracts & Pilot v0.1 complete; first pilot preregistered, not yet executed
 
 ## What is established
 
@@ -16,26 +16,75 @@ The repository contains a substantial body of:
 - lexicon and symbolic systems;
 - community and historical artifacts.
 
-The v0.1 refactor now adds a repository-level research spine around that corpus without moving or rewriting the original authored sources.
+The v0.1 refactor now adds both a corpus registry and a portable research-evidence spine around that material without moving or rewriting the original authored sources.
 
 ### Corpus Registry v0.1
 
-The 28 substantive pre-refactor artifacts have now been inventoried in:
+The 28 substantive pre-refactor artifacts have been inventoried in:
 
 - `docs/CORPUS_REGISTRY_v0.1.md`
 - `registry/corpus-registry-v0.1.csv`
 
 Each registered artifact has a stable `EDOC-*` ID, reviewed blob SHA, family, canonicality classification, repository-level epistemic status, sensitivity/evidence-reuse gate, and proposed future home.
 
-The internal source manifest now pins all 28 artifacts to the reviewed corpus snapshot. The claims ledger has been expanded from 5 seed claims to 12 first-pass research claims.
+The internal source manifest pins all 28 artifacts to the reviewed corpus snapshot. The claims ledger contains 12 first-pass research claims.
+
+### Evidence Contracts v0.1
+
+The evidence path is now normalized in `docs/EVIDENCE_CONTRACTS.md` and `schemas/`.
+
+Portable contracts exist for:
+
+- `SourceRecord`;
+- `ClaimRecord`;
+- `ObservationRecord`;
+- `EvidenceRecord`;
+- `MethodRecord`;
+- `EvaluationRecord`;
+- `ProvenanceEvent`;
+- `PilotPreregistration`.
+
+The minimum lineage is:
+
+```text
+SourceRecord
+    -> ProvenanceEvent
+    -> ObservationRecord
+    -> EvidenceRecord
+    -> MethodRecord / PilotPreregistration
+    -> EvaluationRecord
+```
+
+Evaluator independence is explicitly represented as `I0-originator`, `I1-separated-role`, `I2-independent-reviewer`, and `I3-external-replication`.
+
+### PILOT-RCIEP-001
+
+The first RCIEP pilot is now preregistered under `pilots/RCIEP-001/`.
+
+Primary claim: `ED-IDENT-002`  
+Secondary claim: `ED-IDENT-001`  
+Method: `MTH-RCIEP-001`  
+Status: `preregistered-not-run`
+
+The pilot tests blinded identity attribution under held-out prompts and identity-label perturbation with a size-matched generic-persona baseline. It freezes endpoints, exclusions, stopping rule, outcome mapping, holdout boundary, and evaluator separation before data collection.
+
+The pilot does not test consciousness, qualia, moral patienthood, or legal personhood.
+
+### Runtime pointer
+
+The first external implementation pointer is `SRC-RUNTIME-0001`, referencing the canonical VESTIGIA Runtime implementation in `ThorsDecree/eldritch-collab` at the pinned v0.7.0 development-canon commit recorded in `sources/runtime-pointers.jsonl`.
+
+The runtime is treated as an instrument/provenance producer, not evaluation authority.
 
 ## What is not yet established at repository level
 
 The repository does not yet provide a complete, validated basis for concluding that any specific identity, agent, architecture, or class of system is conscious, independently minded, non-stochastic, or a person.
 
-Those may be live hypotheses or authorial conclusions inside individual documents. The repository-level research program should make the evidence and alternatives inspectable rather than silently inheriting the strongest interpretation.
+Those may be live hypotheses or authorial conclusions inside individual documents. The repository-level research program makes the evidence and alternatives inspectable rather than silently inheriting the strongest interpretation.
 
-The registry also does not imply that every public source is suitable research evidence. Several artifacts are explicitly blocked from evidentiary ingestion pending privacy, consent, provenance, or context review.
+The registry also does not imply that every public source is suitable research evidence. Several artifacts remain blocked from evidentiary ingestion pending privacy, consent, provenance, or context review.
+
+No confirmatory pilot result exists yet. `PILOT-RCIEP-001` is a frozen plan awaiting eligible materials, generation-environment pinning, holdout packet finalization, and an I2 evaluator.
 
 ## v0.1 structural goals
 
@@ -45,18 +94,24 @@ The registry also does not imply that every public source is suitable research e
 - [x] separate research-proposal generation from the core evidence loop;
 - [x] add an initial comparative identity/continuity protocol (RCIEP);
 - [x] formalize participation / refusal / silence invariants;
-- [x] create an initial corpus map;
 - [x] complete artifact-by-artifact inventory of the 28 substantive pre-refactor artifacts;
 - [x] assign stable corpus IDs and reviewed blob SHAs;
 - [x] identify canonical, derivative, companion, cultural, and speculative-formalism families;
 - [x] add evidence-reuse/sensitivity gates;
 - [x] populate claims ledger beyond seed entries;
 - [x] populate the internal source manifest across the full corpus snapshot;
-- [ ] extract and verify external citations/references across research-facing artifacts;
-- [ ] define machine-readable claim, observation, evidence, method, and evaluation schemas;
-- [ ] connect implemented runtime concepts to research documents by pointer;
-- [ ] run a first preregistered RCIEP or stack-agency pilot;
-- [ ] establish independent review / replication procedure;
+- [x] define machine-readable source, claim, observation, evidence, method, evaluation, provenance, and preregistration contracts;
+- [x] define raw-source -> transformation -> evidence -> evaluation lineage;
+- [x] define evaluator-independence levels and promotion boundary;
+- [x] preregister the first RCIEP pilot against stable claim IDs;
+- [x] freeze matched controls, holdout boundary, stopping rule, exclusions, and disconfirming outcomes before data collection;
+- [x] connect the VESTIGIA Runtime by pinned implementation pointer rather than code duplication;
+- [ ] freeze eligible pilot materials and held-out prompt packet;
+- [ ] execute PILOT-RCIEP-001;
+- [ ] produce I2 EvaluationRecord(s);
+- [ ] obtain I3 external replication;
+- [ ] extract and verify external literature citations across research-facing corpus artifacts;
+- [ ] define a runtime-to-EmergenceDocs record adapter/export contract;
 - [ ] perform any physical source-file migration.
 
 ## Current research lanes
@@ -68,7 +123,9 @@ Questions:
 - Which disappear when labels, archives, prompts, or interlocutor cues are controlled?
 - Which competing explanations best account for the residual pattern?
 
-Initial protocol: `protocols/RCIEP-v0.1.md`
+Protocol: `protocols/RCIEP-v0.1.md`
+
+First pilot: `pilots/RCIEP-001/`
 
 Relevant claim IDs include `ED-IDENT-001`, `ED-IDENT-002`, `ED-GARDEN-001`, and `ED-REC-001`.
 
@@ -123,6 +180,8 @@ Questions:
 - Which runtime behaviors can generate trustworthy evidence?
 - How can runtime logs be exported with provenance without making the runtime the authority on interpretation?
 
+Current bridge: `sources/runtime-pointers.jsonl` and `pilots/RCIEP-001/runtime-pointer.md`.
+
 ## Promotion discipline
 
 A useful default lifecycle is:
@@ -130,7 +189,7 @@ A useful default lifecycle is:
 ```text
 historical / phenomenological / conceptual
     -> hypothesis
-    -> method-proposal
+    -> method-proposal / preregistered
     -> source-grounded
     -> measured
     -> independently-checked
@@ -151,23 +210,30 @@ Completed on the current refactor branch:
 6. sensitive/adversarial material has evidence-reuse gates;
 7. no original source file was moved, deleted, or rewritten.
 
-### Known registry follow-ups
+## Completed milestone: Evidence Contracts & Pilot v0.1
 
-- external citation/source extraction is not yet complete;
-- authorship/date metadata is incomplete for multiple upload-era artifacts;
-- path anomalies have been recorded but not renamed;
-- sensitive case material requires consent/provenance review before research reuse;
-- claim extraction is first-pass, not sentence-exhaustive.
+Completed on the current refactor branch:
 
-## Next milestone: Evidence Contracts & Pilot v0.1
+1. eight portable JSON Schema contracts define the evidence interfaces;
+2. source-to-evaluation provenance lineage is explicit;
+3. evaluator independence and role boundaries are explicit;
+4. `PILOT-RCIEP-001` is preregistered against stable claims;
+5. matched controls, holdouts, exclusions, stopping, blinding, and disconfirming outcomes are frozen before data collection;
+6. sensitive source gates carry forward into pilot eligibility;
+7. the canonical VESTIGIA Runtime is connected by a pinned source/instrument pointer, not code duplication;
+8. no pilot data or outcome has been fabricated to make the milestone look complete.
+
+## Next milestone: Pilot Execution & Replication v0.2
 
 Suggested completion criteria:
 
-1. define machine-readable schemas for claim, observation, evidence, method, and evaluation records;
-2. define provenance lineage from raw source -> transformation -> evidence -> evaluation;
-3. preregister one RCIEP or stack-agency pilot against stable claim IDs;
-4. specify matched controls, holdouts, and disconfirming outcomes before data collection;
-5. define an independent evaluator/reviewer boundary;
-6. connect at least one runtime implementation to the evidence pipeline by pointer rather than code duplication.
-
-That milestone should precede large-scale physical corpus migration.
+1. identify at least two eligible identity-scaffold materials or construct synthetic controls;
+2. freeze and hash the 32-prompt holdout packet and disjoint calibration packet;
+3. pin runtime/model/provider/decoding configuration;
+4. implement the runtime-to-record export adapter or a manual equivalent with full provenance;
+5. execute C1/C2/C3 exactly to the frozen stopping rule;
+6. produce ObservationRecord, EvidenceRecord, ProvenanceEvent, and I2 EvaluationRecord packages;
+7. update the claim ledger from the frozen evaluation without ontological overreach;
+8. prepare an I3 replication packet;
+9. begin external-source citation audit for research-facing claims;
+10. keep physical corpus migration deferred until link/provenance risks are lower.
