@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.2",
+  "pilot_id": "PILOT-RCIEP-001",
+  "replication_id": "FILL_ME",
+  "replication_type": "exact|close|conceptual",
+  "originating_preregistration_commit": "867cb0bc5ad0e4888aade795d76b04f8159be39b",
+  "originating_i2_result_ref": "FILL_AFTER_I2_FREEZE",
+  "replication_team": ["FILL_ME"],
+  "independence_level": "I3-external-replication",
+  "materials": {
+    "holdout_sha256": "FILL_ME",
+    "calibration_sha256": "FILL_ME",
+    "scaffold_manifest_sha256": "FILL_ME",
+    "reuse_basis_verified": false
+  },
+  "environment": {
+    "runtime_repository": "ThorsDecree/eldritch-collab",
+    "runtime_commit": "FILL_ME",
+    "provider": "FILL_ME",
+    "model": "FILL_ME",
+    "model_snapshot": "FILL_ME_OR_UNAVAILABLE",
+    "execution_config_sha256": "FILL_ME"
+  },
+  "tooling": {
+    "emergence_docs_commit": "FILL_ME",
+    "adapter_ref": "FILL_ME",
+    "packet_preparer_ref": "tools/rciep_prepare_packet.py",
+    "analyzer_ref": "tools/rciep_analyze.py"
+  },
+  "deviations_from_originating_run": [],
+  "answer_key_custodian": "FILL_ME",
+  "evaluators": ["FILL_ME"],
+  "result_refs": [],
+  "evaluation_ref": null,
+  "status": "template"
+}
