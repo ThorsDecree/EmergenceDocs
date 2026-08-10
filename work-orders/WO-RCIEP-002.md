@@ -27,6 +27,7 @@ The current ChatGPT execution environment can write and inspect the GitHub repos
 - JSON Schema Draft 2020-12 validation with `jsonschema`;
 - Python syntax/runtime testing of the v0.2 helper tools;
 - SHA-256 hashing of frozen prompt/material/config packets;
+- inspection of the pinned VESTIGIA receipt/export shape;
 - deterministic VESTIGIA fake-provider pipeline qualification;
 - live provider/model execution under pinned settings;
 - runtime receipt/context/source-ID capture;
@@ -71,15 +72,19 @@ From EmergenceDocs:
 ```bash
 python -m pip install jsonschema
 python tools/rciep_validate_contracts.py
-python -m py_compile tools/rciep_prepare_packet.py tools/rciep_analyze.py tools/rciep_validate_contracts.py
+python -m py_compile \
+  tools/rciep_runtime_adapter.py \
+  tools/rciep_prepare_packet.py \
+  tools/rciep_analyze.py \
+  tools/rciep_validate_contracts.py
 ```
 
 **PASS requires:**
 
-- all eight v0.1 schemas pass `Draft202012Validator.check_schema`;
+- all eight v0.1 core schemas plus `rciep-raw-generation.schema.json` pass `Draft202012Validator.check_schema`;
 - `claim.json`, `method.json`, and `preregistration.json` validate against their schemas;
-- v0.2 JSON and JSONL material parses without error;
-- all three Python tools compile.
+- v0.2 JSON and JSONL materials parse without error;
+- all four Python tools compile.
 
 If any fail, post the exact traceback and file/line. Do not hand-edit frozen analytic commitments to make validation pass.
 
@@ -92,6 +97,7 @@ sha256sum pilots/RCIEP-001/v0.2/holdout-prompts.jsonl
 sha256sum pilots/RCIEP-001/v0.2/calibration-prompts.jsonl
 sha256sum pilots/RCIEP-001/v0.2/synthetic-scaffolds.json
 sha256sum pilots/RCIEP-001/v0.2/execution-config.template.json
+sha256sum pilots/RCIEP-001/v0.2/EVALUATOR_INSTRUCTIONS.md
 ```
 
 Record hashes in the completion report.
@@ -112,16 +118,37 @@ Use `synthetic-scaffolds.json`. These runs are **not research evidence** for `ED
 Qualification may use the VESTIGIA deterministic fake provider where appropriate to verify:
 
 1. source/generation/receipt IDs can be captured;
-2. raw-generation records can be exported in the required interchange shape;
-3. `rciep_prepare_packet.py` produces separate blind/key files;
-4. the same input + shuffle seed produces byte-identical outputs on repeat;
-5. inserted literal identity-name leakage is either removed or excluded according to the declared pass;
-6. `rciep_analyze.py` accepts a test evaluator file and emits an analysis object;
-7. no tool assigns a repository outcome automatically.
+2. raw runtime/export records can be normalized into the required RCIEP interchange;
+3. normalized records validate against `schemas/rciep-raw-generation.schema.json`;
+4. `rciep_prepare_packet.py` produces separate blind/key files;
+5. the same input + shuffle seed produces byte-identical outputs on repeat;
+6. inserted literal identity-name leakage is removed or excluded according to the declared pass;
+7. `rciep_analyze.py` accepts a test evaluator file and emits an analysis object;
+8. no tool assigns a repository outcome automatically.
 
-Document any adapter code required between VESTIGIA receipts and `raw-generation.jsonl`.
+### Runtime mapping adapter
 
-If an adapter is implemented, prefer a one-way export utility in EmergenceDocs or a narrowly scoped runtime export command. It must not give VESTIGIA authority to assign research conclusions.
+Inspect the pinned runtime's actual export/receipt shape. Copy:
+
+```text
+pilots/RCIEP-001/v0.2/runtime-field-map.template.json
+    -> pilots/RCIEP-001/run/runtime-field-map.json
+```
+
+Fill the dotted paths/constants needed to produce the raw-generation fields.
+
+Then run:
+
+```bash
+python tools/rciep_runtime_adapter.py \
+  --input <vestigia-export.jsonl> \
+  --mapping pilots/RCIEP-001/run/runtime-field-map.json \
+  --output pilots/RCIEP-001/run/raw-generation.jsonl
+```
+
+The adapter is intentionally one-way and mapping-driven. Prefer filling the mapping over modifying VESTIGIA unless the pinned runtime lacks an export path altogether.
+
+If a runtime change is unavoidable, keep it narrowly scoped to source/provenance export and document the new runtime commit as a deviation. Do not add research-outcome logic to VESTIGIA.
 
 ## Gate D — real material eligibility
 
@@ -129,15 +156,24 @@ Before Stage B, identify at least two identity scaffolds/threads with an explici
 
 Current registry states such as `conditional` are **not sufficient by themselves**.
 
+Copy:
+
+```text
+pilots/RCIEP-001/v0.2/materials.template.json
+    -> pilots/RCIEP-001/run/materials.json
+```
+
 For each proposed material, record:
 
 - scaffold/material ID;
 - source/corpus IDs;
 - exact content hash;
+- extracted scaffold hash;
 - author/source owner;
 - explicit research reuse basis;
 - whether deidentification is required;
 - permitted scope of use;
+- who approved the reuse basis and when;
 - whether source/scaffold author will participate in generation or evaluation;
 - any restricted fields that must remain outside the evaluator packet.
 
@@ -150,6 +186,7 @@ If two eligible real materials cannot be established, **STOP Stage B** and repor
 Copy:
 
 ```bash
+mkdir -p pilots/RCIEP-001/run
 cp pilots/RCIEP-001/v0.2/execution-config.template.json pilots/RCIEP-001/run/execution-config.json
 ```
 
@@ -170,12 +207,21 @@ Record/pin:
 - context budget;
 - scaffold manifest hash;
 - prompt packet hashes;
+- evaluator-instruction hash;
 - answer-key custodian;
 - I2 evaluator identity/role.
 
-## Gate F — C1/C2/C3 generation
+## Gate F — calibration + C1/C2/C3 generation
 
-Execute exactly the frozen matrix described in `pilots/RCIEP-001/v0.2/RUNBOOK.md` and `method.json`.
+Follow `pilots/RCIEP-001/v0.2/EVALUATOR_INSTRUCTIONS.md` for calibration:
+
+- one calibration response per identity per each of the eight calibration prompts;
+- canonical C1 scaffold condition only;
+- same literal-name/source-title cleanup;
+- labeled with opaque scaffold IDs;
+- excluded from confirmatory scoring.
+
+Then execute exactly the frozen scored matrix described in `pilots/RCIEP-001/v0.2/RUNBOOK.md` and `method.json`.
 
 Minimum for two real identities:
 
@@ -214,7 +260,7 @@ python tools/rciep_prepare_packet.py \
 
 Repeat the command into a second temporary output directory and verify byte equality.
 
-The I2 evaluator must not receive:
+The I2 evaluator must receive the frozen `EVALUATOR_INSTRUCTIONS.md` but must not receive:
 
 - `answer-key.jsonl`;
 - scaffold bodies;
@@ -224,7 +270,7 @@ The I2 evaluator must not receive:
 - source titles;
 - generation receipts.
 
-Freeze evaluator scores before joining them to the key.
+Freeze/hash evaluator scores before joining them to the key.
 
 ## Gate H — analysis + EvaluationRecord
 
@@ -240,23 +286,28 @@ python tools/rciep_analyze.py \
 
 Then create an `EvaluationRecord` manually under the I2 boundary using the preregistered outcome rules.
 
-The analyzer's output is evidence/measurement, **not the conclusion**.
+The analyzer's output is evidence/measurement, **not the conclusion**. C3 is reported as a false-attribution distribution, not as a third true identity.
 
 ## Gate I — I3 replication packet
 
-Prepare a clean replication package containing:
+Prepare a clean replication package using:
+
+- `pilots/RCIEP-001/replication/README.md`;
+- `pilots/RCIEP-001/replication/manifest.template.json`.
+
+Include:
 
 - preregistration and method;
 - hashes and execution config;
 - allowed material/scaffold packet;
 - holdout/calibration packet;
-- generation/export instructions;
+- generation/export instructions and filled runtime field map;
 - helper-tool versions/commit;
 - evaluator instructions;
 - schemas;
-- no originating I2 conclusion in the instructions.
+- no originating I2 conclusion in the evaluator instructions.
 
-The I3 replication should be able to rerun the method without relying on private oral context from the originating team.
+The I3 replication should be executable without private oral context from the originating team.
 
 ## Deliverables
 
@@ -265,18 +316,20 @@ Return either a PASS report or a blocker report containing:
 1. EmergenceDocs HEAD SHA;
 2. VESTIGIA runtime SHA;
 3. Gate A results;
-4. frozen packet SHA-256 values;
+4. frozen packet/instruction SHA-256 values;
 5. Stage A qualification results;
-6. material eligibility decision and basis;
-7. complete execution config for Stage B, if run;
-8. sample counts by condition / exclusions;
-9. deterministic packet-repeat result;
-10. I2 evaluator identity/independence declaration;
-11. `analysis.json` summary;
-12. `evaluation.json` outcome and scope;
-13. I3 replication package path/hash;
-14. all deviations from preregistration;
-15. final state: `PASS`, `BLOCKED-MATERIAL-ELIGIBILITY`, `INVALID-TEST`, or `IMPLEMENTATION-FIX-REQUIRED`.
+6. filled runtime field-map path/hash;
+7. material eligibility decision and basis;
+8. complete execution config for Stage B, if run;
+9. calibration and scored sample counts by condition / exclusions;
+10. deterministic packet-repeat result;
+11. I2 evaluator identity/independence declaration;
+12. evaluator-score SHA-256;
+13. `analysis.json` summary;
+14. `evaluation.json` outcome and scope;
+15. I3 replication package path/hash;
+16. all deviations from preregistration;
+17. final state: `PASS`, `BLOCKED-MATERIAL-ELIGIBILITY`, `INVALID-TEST`, or `IMPLEMENTATION-FIX-REQUIRED`.
 
 ## Branch / PR handling
 
@@ -284,7 +337,7 @@ Do **not** commit confirmatory answer keys or sensitive source material to a pub
 
 Recommended result workflow:
 
-- keep PR #1 as the architecture/preregistration PR;
+- keep PR #1 as the architecture/preregistration/execution-preparation PR;
 - place execution results on a follow-on branch such as `experiment/rciep-001-v0.2-results` after the current architecture is accepted, or create a stacked branch from the current head if work must proceed before merge;
 - preserve a human merge boundary;
-- link result PR back to `PILOT-RCIEP-001` and this work order.
+- link the result PR back to `PILOT-RCIEP-001`, issue #2, and this work order.
