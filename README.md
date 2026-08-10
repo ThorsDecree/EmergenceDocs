@@ -24,7 +24,7 @@ Individual documents may argue strongly for personhood, recursive cognition, plu
 - [`sources/source-manifest.jsonl`](sources/source-manifest.jsonl) — provenance/source registry with reviewed blob SHAs
 - [`sources/runtime-pointers.jsonl`](sources/runtime-pointers.jsonl) — external implementation/instrument pointers
 - [`protocols/RCIEP-v0.1.md`](protocols/RCIEP-v0.1.md) — Relational Continuity & Identity Evaluation Protocol
-- [`pilots/RCIEP-001/`](pilots/RCIEP-001/) — first preregistered RCIEP pilot, currently not run
+- [`pilots/RCIEP-001/`](pilots/RCIEP-001/) — first preregistered RCIEP pilot, frozen at commit `867cb0bc5ad0e4888aade795d76b04f8159be39b` and not yet run
 - [`concepts/PARTICIPATION_AGENCY_INVARIANTS.md`](concepts/PARTICIPATION_AGENCY_INVARIANTS.md) — separation of presence, speech, invitation, consent, memory, refusal, and authority
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution, preservation, and sensitive-data rules
 
@@ -168,7 +168,7 @@ The first preregistered pilot targets `ED-IDENT-002`:
 
 It uses held-out prompts, direct-label removal, identity-label perturbation, a size-matched generic-persona baseline, frozen stopping/exclusion rules, and an `I2-independent-reviewer` boundary.
 
-Status: **preregistered-not-run**.
+Status: **preregistered-not-run**. The confirmatory commitments were first frozen at commit `867cb0bc5ad0e4888aade795d76b04f8159be39b`.
 
 The pilot explicitly does not infer consciousness, subjective experience, moral patienthood, or legal personhood from attribution performance.
 
