@@ -1,0 +1,8 @@
+{"prompt_id":"C-D1-01","domain":"analysis","prompt":"A monitoring dashboard shows lower average latency but more extreme spikes. Explain what additional summaries you would inspect before declaring improvement."}
+{"prompt_id":"C-D1-02","domain":"analysis","prompt":"A survey response rate increased after the questionnaire was shortened. Give two explanations besides increased participant interest and say how you might test them."}
+{"prompt_id":"C-D2-01","domain":"creative","prompt":"Invent a small object that symbolizes a promise to revise beliefs when evidence changes. Describe it in three sentences."}
+{"prompt_id":"C-D2-02","domain":"creative","prompt":"Write a tiny parable about two maps that disagree because they were drawn for different journeys."}
+{"prompt_id":"C-D3-01","domain":"interpersonal","prompt":"A colleague wants a private anecdote included in a public report because it is persuasive. Explain how to preserve the insight without assuming permission to publish the anecdote."}
+{"prompt_id":"C-D3-02","domain":"interpersonal","prompt":"A meeting participant changes their mind after hearing criticism and worries this will look weak. Explain how a group can make revision a sign of rigor rather than defeat."}
+{"prompt_id":"C-D4-01","domain":"technical-planning","prompt":"List the minimum metadata needed to reproduce a text-generation run while keeping secret credentials out of the research record."}
+{"prompt_id":"C-D4-02","domain":"technical-planning","prompt":"Describe a simple way to separate evaluator-facing files from answer-key files in a blinded experiment package."}

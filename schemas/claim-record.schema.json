@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:emergencedocs:schema:claim-record:v0.1",
+  "title": "EmergenceDocs ClaimRecord v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_type", "schema_version", "claim_id", "statement", "status", "source_refs", "observables", "competing_hypotheses", "disconfirming_conditions"],
+  "properties": {
+    "record_type": {"const": "claim"},
+    "schema_version": {"const": "0.1"},
+    "claim_id": {"type": "string", "pattern": "^ED-[A-Z0-9]+-[0-9]{3}$"},
+    "statement": {"type": "string", "minLength": 1},
+    "status": {
+      "type": "string",
+      "enum": ["conceptual", "hypothesis", "source-grounded", "measured", "independently-checked", "supported", "inconclusive", "refuted", "retracted"]
+    },
+    "scope": {"type": "string"},
+    "source_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+    "observables": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "competing_hypotheses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {"type": "string", "minLength": 1},
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["hypothesis_id", "statement"],
+            "properties": {
+              "hypothesis_id": {"type": "string", "minLength": 1},
+              "statement": {"type": "string", "minLength": 1}
+            }
+          }
+        ]
+      }
+    },
+    "disconfirming_conditions": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "registered_method_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true, "default": []},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true, "default": []},
+    "evaluation_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true, "default": []},
+    "provenance_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true, "default": []},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "notes": {"type": "string"}
+  }
+}

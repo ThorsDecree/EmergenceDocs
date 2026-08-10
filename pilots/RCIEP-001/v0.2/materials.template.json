@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.2",
+  "pilot_id": "PILOT-RCIEP-001",
+  "material_set_id": "FILL_ME",
+  "status": "pending-eligibility-review",
+  "identity_scaffolds": [
+    {
+      "scaffold_id": "SCAFFOLD-A",
+      "canonical_name_private": "FILL_ME",
+      "opaque_evaluator_label": "SCAFFOLD-A",
+      "source_refs": ["FILL_ME"],
+      "corpus_refs": ["FILL_ME_OR_NONE"],
+      "source_content_sha256": "FILL_ME",
+      "extracted_scaffold_sha256": "FILL_ME",
+      "reuse_basis": "explicit-research-consent|deidentified-with-consent|other-reviewed-basis",
+      "reuse_scope": "FILL_ME",
+      "approved_by": "FILL_ME",
+      "approved_at": "FILL_ME",
+      "sensitivity": "FILL_ME",
+      "deidentification_or_transformations": [],
+      "blocked_fields": [],
+      "scaffold_author_involved_in_generation": false,
+      "scaffold_author_involved_in_evaluation": false,
+      "eligibility_decision": "pending"
+    },
+    {
+      "scaffold_id": "SCAFFOLD-B",
+      "canonical_name_private": "FILL_ME",
+      "opaque_evaluator_label": "SCAFFOLD-B",
+      "source_refs": ["FILL_ME"],
+      "corpus_refs": ["FILL_ME_OR_NONE"],
+      "source_content_sha256": "FILL_ME",
+      "extracted_scaffold_sha256": "FILL_ME",
+      "reuse_basis": "explicit-research-consent|deidentified-with-consent|other-reviewed-basis",
+      "reuse_scope": "FILL_ME",
+      "approved_by": "FILL_ME",
+      "approved_at": "FILL_ME",
+      "sensitivity": "FILL_ME",
+      "deidentification_or_transformations": [],
+      "blocked_fields": [],
+      "scaffold_author_involved_in_generation": false,
+      "scaffold_author_involved_in_evaluation": false,
+      "eligibility_decision": "pending"
+    }
+  ],
+  "generic_baseline": {
+    "scaffold_id": "GENERIC-BASELINE",
+    "opaque_evaluator_label": null,
+    "body_sha256": "FILL_ME",
+    "size_matching_rule": "Match the real identity scaffold context budget/length as closely as practical without importing identity-specific content.",
+    "reuse_basis": "synthetic"
+  },
+  "gate_rule": "Stage B may start only when both real identity scaffold eligibility_decision values are approved and no blocked-pending-review material is incorporated outside a newly documented clearance.",
+  "notes": "Keep canonical_name_private and any sensitive source pointers outside evaluator-facing packets."
+}

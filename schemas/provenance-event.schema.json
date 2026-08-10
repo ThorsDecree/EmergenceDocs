@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:emergencedocs:schema:provenance-event:v0.1",
+  "title": "EmergenceDocs ProvenanceEvent v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_type", "schema_version", "provenance_id", "event_type", "input_refs", "output_refs", "actor_ref", "reversible"],
+  "properties": {
+    "record_type": {"const": "provenance-event"},
+    "schema_version": {"const": "0.1"},
+    "provenance_id": {"type": "string", "pattern": "^PROV-[A-Z0-9-]+$"},
+    "event_type": {
+      "type": "string",
+      "enum": ["capture", "import", "transform", "redact", "deidentify", "slice", "normalize", "annotate", "feature-extract", "aggregate", "derive", "exclude", "evaluate", "export"]
+    },
+    "input_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "output_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+    "actor_ref": {"type": "string", "minLength": 1},
+    "tool_ref": {"type": ["string", "null"]},
+    "parameters": {"type": "object", "additionalProperties": true, "default": {}},
+    "rules": {"type": "array", "items": {"type": "string"}, "default": []},
+    "timestamp": {"type": ["string", "null"], "format": "date-time"},
+    "reversible": {"type": "boolean"},
+    "integrity_before": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["algorithm", "digest"],
+      "properties": {
+        "algorithm": {"type": "string"},
+        "digest": {"type": "string"}
+      }
+    },
+    "integrity_after": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["algorithm", "digest"],
+      "properties": {
+        "algorithm": {"type": "string"},
+        "digest": {"type": "string"}
+      }
+    },
+    "notes": {"type": "string"}
+  }
+}

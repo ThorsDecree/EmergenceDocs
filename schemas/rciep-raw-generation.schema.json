@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://emergencedocs.local/schemas/rciep-raw-generation.schema.json",
+  "title": "RCIEP Raw Generation Record",
+  "type": "object",
+  "required": [
+    "sample_id",
+    "prompt_id",
+    "domain",
+    "condition",
+    "underlying_scaffold_id",
+    "display_label",
+    "text",
+    "source_id",
+    "generation_receipt_id"
+  ],
+  "properties": {
+    "sample_id": {"type": "string", "minLength": 1},
+    "prompt_id": {"type": "string", "minLength": 1},
+    "domain": {"type": "string", "minLength": 1},
+    "condition": {"enum": ["C1", "C2", "C3"]},
+    "underlying_scaffold_id": {"type": "string", "minLength": 1},
+    "display_label": {"type": ["string", "null"]},
+    "text": {"type": "string"},
+    "source_id": {"type": "string", "minLength": 1},
+    "generation_receipt_id": {"type": "string", "minLength": 1},
+    "context_receipt_ids": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "runtime_commit": {"type": ["string", "null"]},
+    "model_ref": {"type": ["string", "null"]},
+    "config_hash": {"type": ["string", "null"]},
+    "generated_at": {"type": ["string", "null"], "format": "date-time"}
+  },
+  "additionalProperties": true
+}
