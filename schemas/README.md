@@ -9,6 +9,7 @@ JSON Schema dialect: **Draft 2020-12**
 
 ## Schemas
 
+- `source-record.schema.json`
 - `claim-record.schema.json`
 - `observation-record.schema.json`
 - `evidence-record.schema.json`
@@ -30,6 +31,10 @@ A record is v0.1-compatible when:
 5. any post-preregistration method change is recorded as a deviation.
 
 Schema validity is necessary, not sufficient, for evidentiary validity.
+
+## Source compatibility
+
+The original `sources/source-manifest.jsonl` predates the v0.1 `SourceRecord` contract and remains canonical for the Corpus Registry snapshot. New source records should use `source-record.schema.json`; migration of the historical manifest can occur later without renumbering its `SRC-ED-*` identifiers.
 
 ## Evolution
 
