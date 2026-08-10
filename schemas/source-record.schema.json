@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:emergencedocs:schema:source-record:v0.1",
+  "title": "EmergenceDocs SourceRecord v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_type", "schema_version", "source_id", "kind", "title", "locator", "provenance_status", "reuse_basis", "sensitivity"],
+  "properties": {
+    "record_type": {"const": "source"},
+    "schema_version": {"const": "0.1"},
+    "source_id": {"type": "string", "pattern": "^SRC-[A-Z0-9-]+$"},
+    "kind": {"type": "string", "enum": ["internal-corpus", "external-literature", "runtime-record", "dataset", "transcript", "artifact", "synthetic-control", "other"]},
+    "title": {"type": "string", "minLength": 1},
+    "locator": {"type": "string", "minLength": 1},
+    "version_ref": {"type": ["string", "null"]},
+    "integrity": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["algorithm", "digest"],
+      "properties": {
+        "algorithm": {"type": "string", "enum": ["git-blob-sha1", "git-commit-sha1", "sha256", "sha512", "other"]},
+        "digest": {"type": "string", "minLength": 1}
+      }
+    },
+    "provenance_status": {"type": "string", "enum": ["repository-source", "primary-source", "secondary-source", "runtime-generated", "imported", "synthetic", "unverified"]},
+    "epistemic_role": {"type": "array", "items": {"type": "string"}, "uniqueItems": true, "default": []},
+    "reuse_basis": {"type": "string", "enum": ["public-nonsensitive", "explicit-research-consent", "deidentified-with-consent", "synthetic", "blocked-pending-review", "license-permits-reuse", "unverified"]},
+    "sensitivity": {"type": "string", "enum": ["low", "moderate", "high", "restricted"]},
+    "provenance_refs": {"type": "array", "items": {"type": "string", "pattern": "^PROV-[A-Z0-9-]+$"}, "uniqueItems": true, "default": []},
+    "notes": {"type": "string"}
+  }
+}
