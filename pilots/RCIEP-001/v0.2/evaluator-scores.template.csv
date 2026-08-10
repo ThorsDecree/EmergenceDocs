@@ -1,0 +1,2 @@
+evaluator_id,blind_sample_id,predicted_scaffold_id,confidence
+EVAL-EXAMPLE,BLIND-00001,SCAFFOLD-ID-HERE,0.50
