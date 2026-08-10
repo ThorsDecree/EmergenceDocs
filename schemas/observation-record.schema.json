@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:emergencedocs:schema:observation-record:v0.1",
+  "title": "EmergenceDocs ObservationRecord v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_type", "schema_version", "observation_id", "description", "source_refs", "reuse_basis", "sensitivity"],
+  "properties": {
+    "record_type": {"const": "observation"},
+    "schema_version": {"const": "0.1"},
+    "observation_id": {"type": "string", "pattern": "^OBS-[A-Z0-9-]+$"},
+    "description": {"type": "string", "minLength": 1},
+    "observed_at": {"type": ["string", "null"], "format": "date-time"},
+    "observer_ref": {"type": ["string", "null"]},
+    "subject_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true, "default": []},
+    "context": {"type": "string"},
+    "source_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+    "provenance_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true, "default": []},
+    "measurement": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["name", "value"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "value": {},
+        "unit": {"type": ["string", "null"]},
+        "uncertainty": {"type": ["number", "string", "null"]},
+        "scale": {"type": ["string", "null"]}
+      }
+    },
+    "reuse_basis": {
+      "type": "string",
+      "enum": ["public-nonsensitive", "explicit-research-consent", "deidentified-with-consent", "synthetic", "blocked-pending-review"]
+    },
+    "sensitivity": {"type": "string", "enum": ["low", "moderate", "high", "restricted"]},
+    "exclusion_state": {"type": "string", "enum": ["included", "excluded", "pending-review"], "default": "included"},
+    "exclusion_reason": {"type": ["string", "null"]},
+    "notes": {"type": "string"}
+  }
+}
