@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.2",
+  "description": "Map one JSONL runtime/export record into schemas/rciep-raw-generation.schema.json. Each required output field must use either a dotted input path or a constant. Fill paths only after inspecting the pinned VESTIGIA export/receipt shape.",
+  "fields": {
+    "sample_id": {"path": "FILL_ME"},
+    "prompt_id": {"path": "FILL_ME"},
+    "domain": {"path": "FILL_ME"},
+    "condition": {"path": "FILL_ME"},
+    "underlying_scaffold_id": {"path": "FILL_ME"},
+    "display_label": {"path": "FILL_ME"},
+    "text": {"path": "FILL_ME"},
+    "source_id": {"path": "FILL_ME"},
+    "generation_receipt_id": {"path": "FILL_ME"},
+    "context_receipt_ids": {"path": "FILL_ME_OR_REMOVE"},
+    "generated_at": {"path": "FILL_ME_OR_REMOVE"},
+    "runtime_commit": {"constant": "748e5d74392ad4f0a98c75b187f82b91606e9e39"},
+    "model_ref": {"path": "FILL_ME_OR_REMOVE"},
+    "config_hash": {"constant": "FILL_AFTER_CONFIG_FREEZE"}
+  },
+  "notes": "Do not encode research outcomes, evaluator decisions, or ontology labels in this mapping. It is source/provenance normalization only."
+}
