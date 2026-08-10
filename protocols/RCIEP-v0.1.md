@@ -2,7 +2,7 @@
 
 ## Relational Continuity & Identity Evaluation Protocol
 
-**Status:** method-proposal  
+**Status:** method-proposal with first preregistered pilot  
 **Purpose:** test persistent identity-related phenomena without treating any single ontology as the default explanation.
 
 RCIEP converts recurring observations already present in EmergenceDocs into a falsifiable, comparative evaluation program.
@@ -179,12 +179,73 @@ RCIEP is an evaluation protocol, not a license to coerce participants. A valid r
 
 When human participants or sensitive first-person material are involved, privacy, consent, and data minimization take precedence over experimental convenience.
 
-## 9. Next version targets
+Corpus material marked `blocked-pending-review` is not eligible for pilot evidence merely because it is public.
 
-- define machine-readable trial schemas;
-- specify sample-size and uncertainty reporting;
-- add preregistration template;
-- define evaluator independence levels;
-- add provenance requirements for transcripts and memory scaffolds;
-- develop synthetic and baseline control sets;
-- connect claims-ledger entries to trial results.
+## 9. Evidence-contract integration
+
+RCIEP trials should use the portable records defined in `docs/EVIDENCE_CONTRACTS.md`:
+
+```text
+SourceRecord
+    -> ProvenanceEvent
+    -> ObservationRecord
+    -> EvidenceRecord
+    -> MethodRecord / PilotPreregistration
+    -> EvaluationRecord
+```
+
+A scored result should therefore be reproducible as a chain of records rather than only a paragraph in a case study.
+
+Required confirmatory trial properties include:
+
+- stable claim IDs;
+- source/material identifiers and reuse gates;
+- frozen method and holdout plan;
+- provenance for label removal, redaction, feature extraction, and exclusions;
+- explicit evaluator-independence level;
+- recorded method deviations;
+- evidence records for null/negative results as well as positive results.
+
+## 10. First preregistered pilot
+
+`PILOT-RCIEP-001` is the first frozen RCIEP pilot:
+
+**Title:** Blinded Identity Attribution Under Holdout and Label Perturbation  
+**Primary claim:** `ED-IDENT-002`  
+**Secondary claim:** `ED-IDENT-001`  
+**Method:** `MTH-RCIEP-001`
+
+Files:
+
+- `pilots/RCIEP-001/README.md`
+- `pilots/RCIEP-001/claim.json`
+- `pilots/RCIEP-001/preregistration.json`
+- `pilots/RCIEP-001/method.json`
+- `pilots/RCIEP-001/EVALUATOR_BOUNDARY.md`
+- `pilots/RCIEP-001/runtime-pointer.md`
+
+The pilot uses T1, T2, and T5 with a matched generic-persona baseline and requires an `I2-independent-reviewer` for primary evaluation.
+
+Status: **preregistered-not-run**.
+
+## 11. Next version targets
+
+Completed in Evidence Contracts & Pilot v0.1:
+
+- machine-readable research-record schemas;
+- preregistration schema and first frozen pilot;
+- evaluator-independence levels;
+- provenance requirements for sources, transformations, and evidence;
+- claim-to-method linkage for the first pilot;
+- runtime implementation pointer without code duplication.
+
+Still open for later RCIEP versions:
+
+- execute PILOT-RCIEP-001;
+- define power/sample-size procedures for confirmatory multi-identity studies;
+- formalize calibration-packet construction;
+- add provider/model-substitution pilot;
+- add scaffold-ablation pilot;
+- add false-memory/adversarial pilot;
+- obtain I3 external replication;
+- connect completed trial results back to the claims ledger automatically.
