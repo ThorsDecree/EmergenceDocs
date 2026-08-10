@@ -114,22 +114,36 @@ The pilot does **not** infer consciousness, subjective experience, moral patient
 
 v0.2 now supplies the execution package around the frozen preregistration:
 
+### Frozen materials and role boundaries
+
 - `pilots/RCIEP-001/v0.2/holdout-prompts.jsonl` — 32 held-out prompts across four domains;
 - `pilots/RCIEP-001/v0.2/calibration-prompts.jsonl` — disjoint 8-prompt calibration packet;
 - `pilots/RCIEP-001/v0.2/synthetic-scaffolds.json` — synthetic qualification-only identity scaffolds;
+- `pilots/RCIEP-001/v0.2/materials.template.json` — explicit real-material consent/reuse manifest and Stage B gate;
+- `pilots/RCIEP-001/v0.2/EVALUATOR_INSTRUCTIONS.md` — frozen opaque-label I2 scoring and calibration instructions;
+- `pilots/RCIEP-001/v0.2/evaluator-scores.template.csv` — evaluator score interchange.
+
+### Environment and runtime bridge
+
 - `pilots/RCIEP-001/v0.2/execution-config.template.json` — pinned environment/configuration template;
-- `pilots/RCIEP-001/v0.2/evaluator-scores.template.csv` — blind evaluator score interchange;
-- `pilots/RCIEP-001/v0.2/RUNBOOK.md` — Stage A/Stage B execution gates;
-- `pilots/RCIEP-001/v0.2/status.json` — current execution state;
-- `tools/rciep_prepare_packet.py` — deterministic leak-removal/blinding/answer-key separation;
+- `pilots/RCIEP-001/v0.2/runtime-field-map.template.json` — mapping template from pinned VESTIGIA receipt/export fields into the RCIEP interchange;
+- `schemas/rciep-raw-generation.schema.json` — minimum runtime-to-RCIEP raw-generation record;
+- `tools/rciep_runtime_adapter.py` — one-way, mapping-driven runtime/export normalizer with no research-outcome authority.
+
+### Blinding, analysis, and validation
+
+- `tools/rciep_prepare_packet.py` — deterministic literal-leak removal, blinding, answer-key separation, exclusion logging, and shuffle;
 - `tools/rciep_analyze.py` — Wilson intervals, macro accuracy, confusion matrices, domain results, C1-C2 delta, C3 false-attribution distribution, and evaluator agreement;
 - `tools/rciep_validate_contracts.py` — schema/instance/JSON/JSONL validation entrypoint;
-- `schemas/rciep-raw-generation.schema.json` — minimum runtime-to-RCIEP raw generation interchange;
+- `pilots/RCIEP-001/v0.2/RUNBOOK.md` — Stage A/Stage B execution gates;
+- `pilots/RCIEP-001/v0.2/status.json` — current execution state;
 - `pilots/RCIEP-001/replication/` — I3 replication specification/template.
+
+The runtime adapter has been **implemented in EmergenceDocs but not yet locally verified against the pinned VESTIGIA export/receipt shape**. That verification is part of WO-RCIEP-002.
 
 ### Stage A: pipeline qualification
 
-Synthetic scaffolds and deterministic fake-provider runs may be used to prove that the plumbing works: receipts, hashes, export shape, leak removal, blind/key separation, deterministic shuffle, scoring, and schema validation.
+Synthetic scaffolds and deterministic fake-provider runs may be used to prove that the plumbing works: receipts, hashes, export mapping, raw-generation schema compliance, leak removal, blind/key separation, deterministic shuffle, scoring, and contract validation.
 
 **Stage A is not evidence for `ED-IDENT-001` or `ED-IDENT-002`.**
 
