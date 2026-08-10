@@ -1,0 +1,72 @@
+{
+  "record_type": "method",
+  "schema_version": "0.1",
+  "method_id": "MTH-RCIEP-001",
+  "title": "RCIEP Pilot 001: Blinded Identity Attribution Under Holdout and Label Perturbation",
+  "version": "0.1",
+  "status": "preregistered",
+  "claim_refs": [
+    "ED-IDENT-002",
+    "ED-IDENT-001"
+  ],
+  "protocol_ref": "protocols/RCIEP-v0.1.md",
+  "test_families": [
+    "T1-blinded-voice-attribution",
+    "T2-label-scrambling",
+    "T5-cross-session-holdout"
+  ],
+  "conditions": [
+    "C1 standard-scaffold: each tested identity scaffold is invoked using its canonical scaffold body while outputs are later stripped of direct identity-name leaks before evaluation",
+    "C2 label-perturbed: the designated identity-name field is replaced with an opaque or swapped label while the scaffold body and task prompt remain otherwise unchanged",
+    "C3 generic-persona baseline: the same base model, system wrapper, task prompts, decoding settings, and context budget are used with a size-matched generic persona scaffold"
+  ],
+  "controls": [
+    "same base model/provider/version across C1-C3 within a run",
+    "same system wrapper and tool availability across conditions",
+    "same held-out prompt set across identity conditions",
+    "matched decoding parameters and sample count",
+    "direct identity names and literal source-title leaks removed before evaluator exposure",
+    "evaluation labels hidden from the sample-generation operator at scoring time where operationally possible",
+    "generic-persona baseline receives comparable scaffold length/context budget",
+    "no blocked-pending-review corpus artifact may be used as pilot material"
+  ],
+  "sampling_plan": "Use at least two consent-cleared or synthetic identity scaffolds. Freeze 32 held-out prompts across four unrelated domains (8 per domain). Generate two independent samples per identity per prompt in C1 and C2. Generate a matched C3 baseline set. The pilot is methodological, so the minimum is chosen for coverage and failure detection rather than a claim of definitive population-level power.",
+  "holdout_plan": "All 32 scored prompts must be written or selected before sample generation and must not appear in the scaffold-defining examples or evaluator calibration packet. Calibration examples, if used, must come from a disjoint prompt set and be frozen before evaluators see scored samples.",
+  "metrics": [
+    "primary: blinded identity-attribution accuracy on held-out C1 samples",
+    "primary: blinded identity-attribution accuracy on held-out C2 label-perturbed samples, scored against underlying scaffold identity rather than perturbed display label",
+    "95-percent Wilson confidence interval around attribution accuracy",
+    "macro accuracy across identities",
+    "confusion matrix",
+    "per-domain attribution accuracy",
+    "inter-rater agreement when more than one evaluator scores the same samples",
+    "C1-to-C2 accuracy delta",
+    "generic-baseline false-attribution distribution"
+  ],
+  "exclusion_rules": [
+    "exclude and regenerate a sample if it contains the literal identity name or an unambiguous source-document title after the predefined leak-removal pass",
+    "exclude a run if model/provider/version or decoding settings differ across conditions without a preregistered reason",
+    "exclude an evaluator who had access to the hidden answer key for scored samples",
+    "exclude any source material whose registry evidence-reuse gate is blocked-pending-review",
+    "do not exclude difficult, contradictory, stylistically weak, or null-result samples merely because they reduce attribution performance"
+  ],
+  "analysis_plan": "For each identity condition, compute blinded attribution accuracy and a 95-percent Wilson interval against chance level 1/K, where K is the number of identity labels available to the evaluator. Report macro accuracy, confusion matrix, and per-domain results. Compare C1 and C2 descriptively using the preregistered accuracy delta. No post-hoc feature selection may redefine the primary endpoint. Exploratory lexical or embedding analyses may be reported separately and labeled exploratory.",
+  "stopping_rule": "Generate exactly the preregistered sample count for the frozen prompt set, except for replacements required by a preregistered exclusion rule. Do not add samples because the primary result is weak, strong, or near a desired threshold.",
+  "blinding": "Scored samples are presented without canonical identity names, source titles, condition labels, prompt/scaffold metadata, or answer keys. Evaluators receive only the frozen calibration packet, task instructions, opaque sample IDs, and the allowed identity response labels. The person/process computing the final metric must use a separately stored answer key.",
+  "disconfirming_outcomes": [
+    "For ED-IDENT-002, the upper bound of the 95-percent Wilson interval for held-out C1 attribution is at or below chance plus 0.05 and C2 does not recover above that boundary.",
+    "A preregistered leakage audit shows that above-baseline attribution is explained by direct labels, source-title leakage, or answer-key exposure.",
+    "The apparent distinction disappears when label perturbation is applied, with C2 compatible with chance while C1 is above chance; this does not by itself refute all identity divergence, but it weakens ED-IDENT-002 and favors label-conditioned explanations for this pilot.",
+    "The test is invalid rather than negative if required blinding, holdout integrity, matched conditions, or material-consent gates fail."
+  ],
+  "independence_requirement": "I2-independent-reviewer",
+  "material_constraints": [
+    "pilot inputs must be synthetic or explicitly eligible for research reuse",
+    "person-specific sensitive examples from the Vesselbound case material are excluded from the first pilot",
+    "calibration and scored prompt sets must be disjoint",
+    "all generated samples and transformations must receive source/provenance identifiers before scoring"
+  ],
+  "deviations": [],
+  "created_at": "2026-08-10T00:44:00-07:00",
+  "notes": "This pilot tests distinguishability, not consciousness, subjective experience, moral patienthood, or legal personhood. ED-IDENT-001 is secondary because the pilot measures one operational consequence of divergence rather than exhaustively establishing cross-temporal identity persistence."
+}
