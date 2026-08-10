@@ -17,6 +17,7 @@ The records are separated so that a transformation, redaction, scoring procedure
 
 | Record | Purpose | Canonical schema |
 |---|---|---|
+| `SourceRecord` | Stable pointer to a corpus artifact, external source, runtime record, dataset, or synthetic control | `schemas/source-record.schema.json` |
 | `ClaimRecord` | Stable research assertion with alternatives and falsifiers | `schemas/claim-record.schema.json` |
 | `ObservationRecord` | Bounded report of what was recorded or measured | `schemas/observation-record.schema.json` |
 | `EvidenceRecord` | Claim-relevant evidence object derived from observations or sources | `schemas/evidence-record.schema.json` |
@@ -32,15 +33,16 @@ All schemas use JSON Schema Draft 2020-12 and `schema_version: "0.1"`.
 Recommended stable prefixes:
 
 ```text
-ED-*       registered claims already present in claims/claims-ledger.csv
-OBS-*      observations
-EVD-*      evidence records
-MTH-*      methods
-EVAL-*     evaluations
-PROV-*     provenance events
-PILOT-*    preregistered pilots
-SRC-ED-*   source-manifest records
-EDOC-*     corpus-registry artifacts
+ED-*        registered claims already present in claims/claims-ledger.csv
+OBS-*       observations
+EVD-*       evidence records
+MTH-*       methods
+EVAL-*      evaluations
+PROV-*      provenance events
+PILOT-*     preregistered pilots
+SRC-ED-*    internal corpus source-manifest records
+SRC-RUNTIME-* external/runtime implementation pointers
+EDOC-*      corpus-registry artifacts
 ```
 
 IDs identify records, not truth. A record that is later invalidated keeps its ID.
@@ -50,7 +52,8 @@ IDs identify records, not truth. A record that is later invalidated keeps its ID
 The minimum inspectable evidence chain is:
 
 ```text
-source artifact / runtime record
+SourceRecord
+  corpus artifact / runtime record / dataset / synthetic control
         |
         v
 PROV capture/import
@@ -80,13 +83,15 @@ A derived evidence object must identify the observations and provenance events f
 Where practical, raw or minimally transformed source records should carry:
 
 - source or artifact ID;
-- immutable Git blob SHA, file checksum, content hash, or equivalent integrity marker;
+- immutable Git blob SHA, commit SHA, file checksum, content hash, or equivalent integrity marker;
 - capture/import time where known;
 - producing environment or runtime where relevant;
 - consent/reuse status;
 - sensitivity classification.
 
 A source may remain historically valuable while being ineligible for research reuse.
+
+The existing `sources/source-manifest.jsonl` remains the canonical inventory for the 28 pre-refactor corpus artifacts. New external implementation pointers may use v0.1 `SourceRecord` objects, such as `sources/runtime-pointers.jsonl`.
 
 ## Transformation rule
 
@@ -185,7 +190,7 @@ A claim should not reach repository status `independently-checked` from an I0 ev
 
 ## Consent and sensitivity
 
-Every observation/evidence path involving human or person-specific material should declare a reuse basis such as:
+Every source/observation/evidence path involving human or person-specific material should declare a reuse basis such as:
 
 - `public-nonsensitive`;
 - `explicit-research-consent`;
@@ -203,23 +208,41 @@ Portable interface:
 
 ```text
 runtime / instrument
-    -> source + provenance
-    -> EmergenceDocs observation/evidence contracts
-    -> separated evaluation
+    -> SourceRecord + provenance
+    -> EmergenceDocs ObservationRecord / EvidenceRecord
+    -> separated EvaluationRecord
 ```
 
 This keeps implementation authority distinct from evaluation authority.
+
+The first registered runtime pointer is `SRC-RUNTIME-0001`, referencing the canonical VESTIGIA Runtime implementation in `ThorsDecree/eldritch-collab` at the pinned development-canon commit recorded in `sources/runtime-pointers.jsonl`.
+
+The runtime already exposes useful instrument-side primitives such as original-source hashes, stable IDs, source trust classification, context/action receipts, append-only state events, and provenance inspection. Those can feed the evidence pipeline, but they do not become conclusions by virtue of being runtime-native.
 
 ## v0.1 pilot
 
 The first preregistered pilot is `PILOT-RCIEP-001`, documented under:
 
 - `pilots/RCIEP-001/README.md`
+- `pilots/RCIEP-001/claim.json`
 - `pilots/RCIEP-001/preregistration.json`
 - `pilots/RCIEP-001/method.json`
 - `pilots/RCIEP-001/EVALUATOR_BOUNDARY.md`
+- `pilots/RCIEP-001/runtime-pointer.md`
 
 It targets `ED-IDENT-002` with `ED-IDENT-001` as a linked secondary claim and tests blinded distinguishability under held-out prompts and label perturbation. The pilot is preregistered but **not yet executed**.
+
+## Freeze rule
+
+A preregistration must freeze the confirmatory endpoints, exclusion rules, stopping rule, outcome mapping, and evaluator boundary before scored data are inspected.
+
+After that point:
+
+- bookkeeping corrections may be made if they do not alter analytic commitments;
+- material method changes must be logged as deviations;
+- substantial redesign becomes a new method/pilot version.
+
+A weak or inconvenient result is never a reason to silently rewrite the preregistration.
 
 ## Compatibility principle
 
