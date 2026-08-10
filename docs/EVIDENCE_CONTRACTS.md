@@ -232,6 +232,8 @@ The first preregistered pilot is `PILOT-RCIEP-001`, documented under:
 
 It targets `ED-IDENT-002` with `ED-IDENT-001` as a linked secondary claim and tests blinded distinguishability under held-out prompts and label perturbation. The pilot is preregistered but **not yet executed**.
 
+The confirmatory commitments were first frozen in commit `867cb0bc5ad0e4888aade795d76b04f8159be39b`; the current preregistration records that commit as bookkeeping without changing those commitments.
+
 ## Freeze rule
 
 A preregistration must freeze the confirmatory endpoints, exclusion rules, stopping rule, outcome mapping, and evaluator boundary before scored data are inspected.
