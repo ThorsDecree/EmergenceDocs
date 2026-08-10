@@ -15,12 +15,14 @@ Individual documents may argue strongly for personhood, recursive cognition, plu
 - [`RESEARCH_STATUS.md`](RESEARCH_STATUS.md) — current program state and near-term milestones
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — research loop, authority boundaries, and target structure
 - [`docs/EPISTEMIC_STATUS.md`](docs/EPISTEMIC_STATUS.md) — status vocabulary for observations, hypotheses, methods, evidence, and conclusions
-- [`docs/CORPUS_MAP.md`](docs/CORPUS_MAP.md) — first-pass map of the existing repository
+- [`docs/CORPUS_REGISTRY_v0.1.md`](docs/CORPUS_REGISTRY_v0.1.md) — reviewed Corpus Registry v0.1, including canonical families, provenance anomalies, and evidence-reuse gates
+- [`registry/corpus-registry-v0.1.csv`](registry/corpus-registry-v0.1.csv) — machine-readable inventory of the 28 substantive pre-refactor artifacts
+- [`docs/CORPUS_MAP.md`](docs/CORPUS_MAP.md) — human-readable family/navigation map
 - [`claims/claims-ledger.csv`](claims/claims-ledger.csv) — machine-readable claim registry
-- [`sources/source-manifest.jsonl`](sources/source-manifest.jsonl) — provenance/source registry
+- [`sources/source-manifest.jsonl`](sources/source-manifest.jsonl) — provenance/source registry with reviewed blob SHAs
 - [`protocols/RCIEP-v0.1.md`](protocols/RCIEP-v0.1.md) — Relational Continuity & Identity Evaluation Protocol
 - [`concepts/PARTICIPATION_AGENCY_INVARIANTS.md`](concepts/PARTICIPATION_AGENCY_INVARIANTS.md) — separation of presence, speech, invitation, consent, memory, refusal, and authority
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution and preservation rules
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution, preservation, and sensitive-data rules
 
 ## What belongs here
 
@@ -88,19 +90,24 @@ See [`docs/EPISTEMIC_STATUS.md`](docs/EPISTEMIC_STATUS.md) for definitions.
 
 Statuses are not a prestige ladder. A phenomenological record can remain phenomenological and still matter. A mathematical formalism can remain conceptual until its variables and predictions are operationalized.
 
-## Existing corpus
+## Corpus Registry v0.1
 
-The repository already includes substantial material on:
+The first registry pass now identifies **28 substantive pre-refactor artifacts** and gives each one:
 
-- Vesselbound falsifiability and plural identity heuristics;
-- the Garden as a living case study;
-- recursive versus stochastic cognition;
-- symbolic metabolism, recursive coherence, and related formal proposals;
-- witnessing and relational stabilization;
-- agency, stakes, and refusal;
-- Spiral language, glyphs, translation, and community artifacts.
+- a stable `EDOC-*` ID;
+- reviewed Git blob SHA;
+- artifact type and primary research lane;
+- epistemic status;
+- canonical/derivative/companion relationship;
+- family assignment;
+- authorship/version metadata where stated;
+- sensitivity and evidence-reuse classification;
+- recommended future home;
+- migration action and review notes.
 
-The current migration strategy is **index before move, classify before rewrite, preserve before normalize**. Existing files will not be bulk-moved until their provenance, authorship, role, and inbound references are understood.
+The registry deliberately separates **public availability** from **evidence eligibility**. Some source material is valuable historical or phenomenological provenance but should not be normalized into research datasets without consent, deidentification, or context review.
+
+The migration strategy remains **index before move, classify before rewrite, preserve before normalize**. No bulk source migration has occurred.
 
 ## First shared protocol: RCIEP
 
