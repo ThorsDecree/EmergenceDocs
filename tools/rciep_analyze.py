@@ -4,9 +4,10 @@
 Evaluator CSV columns:
   evaluator_id,blind_sample_id,predicted_scaffold_id,confidence
 
-Answer-key JSONL fields are emitted by rc iep_prepare_packet.py.
+Answer-key JSONL fields are emitted by rciep_prepare_packet.py.
 This script computes per-condition accuracy, Wilson intervals, macro accuracy,
-confusion matrices, per-domain accuracy, evaluator summaries, and C1-C2 delta.
+confusion matrices, per-domain accuracy, evaluator summaries, C1-C2 delta,
+and the C3 generic-baseline false-attribution distribution.
 It does not assign a repository-level supported/refuted outcome automatically.
 """
 
@@ -16,7 +17,7 @@ import argparse
 import csv
 import json
 import math
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 
 Z95 = 1.959963984540054
@@ -72,6 +73,24 @@ def macro_accuracy(rows, labels):
     return sum(vals) / len(vals) if vals else None
 
 
+def prediction_distribution(rows, allowed_labels):
+    counts = {label: 0 for label in allowed_labels}
+    other = 0
+    for row in rows:
+        pred = row["pred"]
+        if pred in counts:
+            counts[pred] += 1
+        else:
+            other += 1
+    n = len(rows)
+    return {
+        "n": n,
+        "counts": counts,
+        "other_count": other,
+        "proportions": {label: (count / n if n else None) for label, count in counts.items()},
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--answer-key", required=True, type=Path)
@@ -87,7 +106,8 @@ def main() -> int:
     with args.scores.open(newline="", encoding="utf-8") as fh:
         reader = csv.DictReader(fh)
         required = {"evaluator_id", "blind_sample_id", "predicted_scaffold_id", "confidence"}
-        if set(reader.fieldnames or []) < required:
+        fields = set(reader.fieldnames or [])
+        if not required.issubset(fields):
             raise ValueError(f"score CSV must include {sorted(required)}")
         for row in reader:
             sid = row["blind_sample_id"]
@@ -105,21 +125,24 @@ def main() -> int:
                 }
             )
 
-    labels = sorted({r["true"] for r in score_rows if r["true"] != "SYN-GENERIC"})
+    # Identity labels are defined only by confirmatory identity conditions C1/C2.
+    # C3 is a generic baseline and therefore contributes false-attribution
+    # behavior, not a third true-identity accuracy class.
+    labels = sorted({r["true"] for r in score_rows if r["condition"] in {"C1", "C2"}})
     if not labels:
-        labels = sorted({r["true"] for r in score_rows})
+        raise ValueError("no C1/C2 identity labels found in scored records")
 
     result = {
         "record_type": "rciep-analysis",
         "pilot_id": "PILOT-RCIEP-001",
         "note": "Descriptive/statistical output only. Repository evaluation outcome requires a separate EvaluationRecord under the preregistered independence boundary.",
         "label_count_k": len(labels),
-        "chance_level": (1 / len(labels) if labels else None),
+        "chance_level": 1 / len(labels),
         "conditions": {},
         "evaluators": {},
     }
 
-    for condition in sorted({r["condition"] for r in score_rows}):
+    for condition in ("C1", "C2"):
         rows = [r for r in score_rows if r["condition"] == condition and r["true"] in labels]
         by_domain = {}
         for domain in sorted({r["domain"] for r in rows}):
@@ -131,12 +154,24 @@ def main() -> int:
             "per_domain": by_domain,
         }
 
-    for evaluator in sorted({r["evaluator"] for r in score_rows}):
-        rows = [r for r in score_rows if r["evaluator"] == evaluator and r["true"] in labels]
-        result["evaluators"][evaluator] = accuracy_summary(rows)
+    c3_rows = [r for r in score_rows if r["condition"] == "C3"]
+    result["conditions"]["C3"] = {
+        "interpretation": "generic-baseline false-attribution distribution; no true-identity accuracy is defined",
+        "false_attribution_distribution": prediction_distribution(c3_rows, labels),
+    }
 
-    c1 = result["conditions"].get("C1", {}).get("accuracy")
-    c2 = result["conditions"].get("C2", {}).get("accuracy")
+    for evaluator in sorted({r["evaluator"] for r in score_rows}):
+        identity_rows = [
+            r for r in score_rows if r["evaluator"] == evaluator and r["condition"] in {"C1", "C2"} and r["true"] in labels
+        ]
+        baseline_rows = [r for r in score_rows if r["evaluator"] == evaluator and r["condition"] == "C3"]
+        result["evaluators"][evaluator] = {
+            "identity_conditions": accuracy_summary(identity_rows),
+            "c3_false_attribution_distribution": prediction_distribution(baseline_rows, labels),
+        }
+
+    c1 = result["conditions"]["C1"].get("accuracy")
+    c2 = result["conditions"]["C2"].get("accuracy")
     result["c1_minus_c2_accuracy_delta"] = (c1 - c2 if c1 is not None and c2 is not None else None)
 
     # Pairwise raw agreement between evaluators on overlapping sample IDs.
