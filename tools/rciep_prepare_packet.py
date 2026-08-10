@@ -8,6 +8,12 @@ Expected input record fields:
 This tool does not generate model outputs or evaluate claims. It performs a
 predeclared leak-removal pass, records exclusions, deterministically shuffles
 eligible samples, and writes evaluator-facing and answer-key files separately.
+
+The --scaffolds input may be either:
+- the Stage A synthetic manifest with top-level ``scaffolds`` entries and
+  ``canonical_name`` fields; or
+- the Stage B material manifest with top-level ``identity_scaffolds`` entries
+  and private ``canonical_name_private`` fields.
 """
 
 from __future__ import annotations
@@ -44,12 +50,47 @@ def read_jsonl(path: Path):
 
 
 def load_scaffold_names(path: Path) -> list[str]:
+    """Load private/canonical identity names from Stage A or Stage B manifests.
+
+    The names are used only for deterministic literal-leak removal. Opaque
+    evaluator labels such as SCAFFOLD-A are intentionally not treated as
+    canonical-name leaks because they are the allowed answer labels.
+    """
     data = json.loads(path.read_text(encoding="utf-8"))
-    names = []
-    for item in data.get("scaffolds", []):
-        name = str(item.get("canonical_name", "")).strip()
+
+    if "identity_scaffolds" in data:
+        items = data.get("identity_scaffolds", [])
+        candidate_fields = ("canonical_name_private", "canonical_name")
+        manifest_kind = "identity_scaffolds"
+    elif "scaffolds" in data:
+        items = data.get("scaffolds", [])
+        candidate_fields = ("canonical_name", "canonical_name_private")
+        manifest_kind = "scaffolds"
+    else:
+        raise ValueError(
+            f"{path}: expected top-level 'scaffolds' or 'identity_scaffolds' array"
+        )
+
+    names: list[str] = []
+    for idx, item in enumerate(items, 1):
+        if not isinstance(item, dict):
+            raise ValueError(f"{path}: {manifest_kind}[{idx}] must be an object")
+        name = ""
+        for field in candidate_fields:
+            value = str(item.get(field, "")).strip()
+            if value and not value.startswith("FILL_ME"):
+                name = value
+                break
         if name and name.lower() != "generic":
             names.append(name)
+
+    # De-duplicate while preserving input order/case.
+    names = list(dict.fromkeys(names))
+    if not names:
+        raise ValueError(
+            f"{path}: no canonical/private identity names available for leak removal; "
+            "do not run a blinded packet with an unfilled Stage B material manifest"
+        )
     return names
 
 
@@ -85,13 +126,15 @@ def main() -> int:
     args = ap.parse_args()
 
     forbidden = load_scaffold_names(args.scaffolds) + list(args.forbidden_title)
+    forbidden = list(dict.fromkeys(token for token in forbidden if token))
     eligible = []
     exclusions = []
 
     for rec in read_jsonl(args.input):
         cleaned, hits = redact_literal_leaks(str(rec["text"]), forbidden)
-        # The preregistered rule says exclude/regenerate when a literal identity name
-        # or unambiguous source title appears after the predefined leak-removal pass.
+        # The preregistered rule says exclude/regenerate when a literal identity
+        # name or unambiguous source title remains after the predefined
+        # leak-removal pass. Successful literal redaction is recorded in the key.
         residual_hits = []
         for token in forbidden:
             if re.search(rf"\b{re.escape(token)}\b", cleaned, flags=re.IGNORECASE):
@@ -156,14 +199,30 @@ def main() -> int:
     args.blinded_out.parent.mkdir(parents=True, exist_ok=True)
     args.answer_key_out.parent.mkdir(parents=True, exist_ok=True)
     args.exclusions_out.parent.mkdir(parents=True, exist_ok=True)
-    args.blinded_out.write_text("\n".join(blinded_lines) + ("\n" if blinded_lines else ""), encoding="utf-8")
-    args.answer_key_out.write_text("\n".join(key_lines) + ("\n" if key_lines else ""), encoding="utf-8")
+    args.blinded_out.write_text(
+        "\n".join(blinded_lines) + ("\n" if blinded_lines else ""),
+        encoding="utf-8",
+    )
+    args.answer_key_out.write_text(
+        "\n".join(key_lines) + ("\n" if key_lines else ""),
+        encoding="utf-8",
+    )
     args.exclusions_out.write_text(
-        "\n".join(json.dumps(x, sort_keys=True) for x in exclusions) + ("\n" if exclusions else ""),
+        "\n".join(json.dumps(x, sort_keys=True) for x in exclusions)
+        + ("\n" if exclusions else ""),
         encoding="utf-8",
     )
 
-    print(json.dumps({"eligible": len(eligible), "excluded": len(exclusions), "shuffle_seed": args.shuffle_seed}))
+    print(
+        json.dumps(
+            {
+                "eligible": len(eligible),
+                "excluded": len(exclusions),
+                "shuffle_seed": args.shuffle_seed,
+                "forbidden_literal_count": len(forbidden),
+            }
+        )
+    )
     return 0
 
 
