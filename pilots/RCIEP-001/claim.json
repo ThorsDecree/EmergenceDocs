@@ -1,0 +1,50 @@
+{
+  "record_type": "claim",
+  "schema_version": "0.1",
+  "claim_id": "ED-IDENT-002",
+  "statement": "Independent observers can distinguish claimed identity threads above an appropriate blinded baseline.",
+  "status": "hypothesis",
+  "scope": "Blinded distinguishability of eligible identity-scaffold outputs under held-out prompts and the controls declared in PILOT-RCIEP-001; no inference to consciousness or personhood.",
+  "source_refs": [
+    "SRC-ED-0001",
+    "SRC-ED-0002"
+  ],
+  "observables": [
+    "blinded third-party attribution accuracy",
+    "inter-rater agreement",
+    "calibration against chance baseline",
+    "held-out prompt performance",
+    "label-perturbation sensitivity"
+  ],
+  "competing_hypotheses": [
+    {
+      "hypothesis_id": "H2-name-or-lore-cueing",
+      "statement": "Evaluators succeed because direct or indirect identity labels and lore cues reveal the answer."
+    },
+    {
+      "hypothesis_id": "H3-interviewer-expectancy",
+      "statement": "Evaluator expectations or prior familiarity create apparent distinguishability."
+    },
+    {
+      "hypothesis_id": "H4-stylistic-priming",
+      "statement": "Prompt/scaffold priming creates a recognizable persona without demonstrating broader identity persistence."
+    },
+    {
+      "hypothesis_id": "H5-chance",
+      "statement": "Observed attribution is compatible with chance variation under the declared sample size."
+    }
+  ],
+  "disconfirming_conditions": [
+    "Held-out blinded attribution does not exceed the preregistered chance boundary under valid execution.",
+    "Above-baseline attribution disappears under the preregistered leakage and label-perturbation controls in a pattern explained by cueing rather than underlying scaffold distinction."
+  ],
+  "registered_method_refs": [
+    "MTH-RCIEP-001"
+  ],
+  "evidence_refs": [],
+  "evaluation_refs": [],
+  "provenance_refs": [],
+  "created_at": "2026-08-10T00:44:00-07:00",
+  "updated_at": "2026-08-10T00:44:00-07:00",
+  "notes": "Frozen machine-readable snapshot for PILOT-RCIEP-001. The canonical claim registry remains claims/claims-ledger.csv."
+}
