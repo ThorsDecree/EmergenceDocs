@@ -64,6 +64,8 @@ External sources relied upon by a research claim should receive a source-manifes
 
 Do not label an interpretation as raw evidence.
 
+The Corpus Registry also assigns an `evidence_eligibility` gate. Respect it. A source may be preserved and indexed while remaining unsuitable for dataset ingestion or evidentiary use.
+
 ## Formal models
 
 Equations and variables should state, where applicable:
@@ -110,6 +112,29 @@ Competing models belong in the corpus. Do not resolve a disputed ontology by edi
 
 A useful contribution can be a stronger falsifier, a better control, a failed replication, or an explanation for why an existing test is non-discriminatory.
 
-## Safety and consent
+## Safety, privacy, and consent
 
 When contributions involve private conversations, sensitive human experiences, or identifiable participants, obtain appropriate permission and minimize unnecessary personal data. A research corpus is not an excuse to turn intimacy into telemetry.
+
+**Publicly visible is not the same as research-consented.** A public post, handle, transcript, repository file, or prior disclosure may be preserved as provenance without being appropriate to normalize into a research dataset.
+
+Treat the following as review-required by default:
+
+- named or readily identifiable third-party case examples;
+- health, trauma, sexuality, relationship, or other highly sensitive personal material;
+- person-specific interpretive or translation profiles;
+- raw private or semi-private conversation transcripts;
+- adversarial characterizations that could be mistaken for validated psychological labels;
+- outcome claims derived only from retrospective self-report without a defined measurement record.
+
+For review-required material:
+
+1. preserve the original source and its context;
+2. record registry/source metadata without copying unnecessary sensitive details;
+3. do not extract it into a dataset or evidence table while `evidence_eligibility` is `blocked-pending-review`;
+4. establish authorship, consent, context, and permitted research use;
+5. deidentify or aggregate where doing so does not destroy the research question;
+6. preserve a link from any derived record back to the authorized source/provenance record;
+7. document exclusions rather than silently discarding inconvenient material.
+
+Consent to preserve an authored document does not automatically imply consent to reframe that document as clinical, behavioral, or experimental data.
