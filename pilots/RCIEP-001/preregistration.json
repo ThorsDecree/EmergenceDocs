@@ -39,8 +39,8 @@
     "needs-replication: a nominally supportive result depends on one evaluator, one domain, one identity pair, or another fragile slice that prevents a stable interpretation"
   ],
   "evaluator_boundary": "Primary evaluation requires I2-independent-reviewer: evaluators did not author the tested identity scaffolds or target claim, did not generate scored samples, did not control hidden labels, and do not receive the answer key. Future I3 external replication is required before repository promotion to independently-checked.",
-  "freeze_rule": "The Git commit containing this preregistration and MTH-RCIEP-001 freezes confirmatory endpoints, exclusion rules, outcome rules, and stopping rule. Later changes must be recorded as deviations or a new pilot/version. The frozen_commit_ref may be populated as bookkeeping without changing analytic commitments.",
+  "freeze_rule": "Commit 867cb0bc5ad0e4888aade795d76b04f8159be39b first committed this preregistration with the confirmatory endpoints, exclusion/outcome logic, holdout boundary, and freeze rule already fixed. This bookkeeping field records that historical freeze point. Later analytic changes require a logged deviation or new pilot/version.",
   "preregistered_at": "2026-08-10T00:44:00-07:00",
-  "frozen_commit_ref": null,
+  "frozen_commit_ref": "867cb0bc5ad0e4888aade795d76b04f8159be39b",
   "notes": "No data have been collected or scored under this preregistration. The pilot is designed to discriminate identity distinguishability from label/cue dependence, not to infer consciousness or personhood."
 }
