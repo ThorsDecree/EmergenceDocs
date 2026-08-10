@@ -213,7 +213,8 @@ Required confirmatory trial properties include:
 **Title:** Blinded Identity Attribution Under Holdout and Label Perturbation  
 **Primary claim:** `ED-IDENT-002`  
 **Secondary claim:** `ED-IDENT-001`  
-**Method:** `MTH-RCIEP-001`
+**Method:** `MTH-RCIEP-001`  
+**Frozen confirmatory commitments:** `867cb0bc5ad0e4888aade795d76b04f8159be39b`
 
 Files:
 
