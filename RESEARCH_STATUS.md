@@ -10,7 +10,7 @@ EmergenceDocs now has three completed structural layers and one active execution
 1. **Research Architecture v0.1** — authority boundaries and full research loop;
 2. **Corpus Registry v0.1** — 28 substantive pre-refactor artifacts inventoried and provenance-gated;
 3. **Evidence Contracts & Pilot v0.1** — portable evidence schemas plus a frozen RCIEP preregistration;
-4. **Pilot Execution & Replication v0.2** — frozen prompt packets, execution tooling, local runbook, work order, and I3 replication specification.
+4. **Pilot Execution & Replication v0.2** — frozen prompt packets, execution tooling, runtime adapter, local runbook/work order, and I3 replication specification.
 
 No confirmatory result has been claimed.
 
@@ -66,17 +66,22 @@ It does **not** test consciousness, qualia, moral patienthood, legal personhood,
 
 ## Pilot Execution & Replication v0.2
 
-### Frozen execution materials
+### Frozen execution materials and role boundaries
 
 - `pilots/RCIEP-001/v0.2/holdout-prompts.jsonl` — 32 holdout prompts, four domains, eight per domain;
 - `pilots/RCIEP-001/v0.2/calibration-prompts.jsonl` — eight disjoint calibration prompts;
 - `pilots/RCIEP-001/v0.2/synthetic-scaffolds.json` — qualification-only synthetic scaffolds;
+- `pilots/RCIEP-001/v0.2/materials.template.json` — real-material eligibility/reuse manifest template;
+- `pilots/RCIEP-001/v0.2/EVALUATOR_INSTRUCTIONS.md` — frozen opaque-label I2 scoring/calibration instructions;
+- `pilots/RCIEP-001/v0.2/evaluator-scores.template.csv` — evaluator score interchange;
 - `pilots/RCIEP-001/v0.2/execution-config.template.json` — environment/config freeze template;
+- `pilots/RCIEP-001/v0.2/runtime-field-map.template.json` — pinned-runtime export-field mapping template;
 - `pilots/RCIEP-001/v0.2/RUNBOOK.md` — execution gates and artifact layout;
 - `pilots/RCIEP-001/v0.2/status.json` — machine-readable current state.
 
 ### Executable tooling
 
+- `tools/rciep_runtime_adapter.py` — one-way, mapping-driven runtime/export normalizer into the RCIEP raw-generation interchange;
 - `tools/rciep_prepare_packet.py` — deterministic leak removal, blind packet creation, answer-key separation, and exclusion log;
 - `tools/rciep_analyze.py` — C1/C2 attribution statistics, Wilson intervals, macro accuracy, confusion matrices, domain summaries, C1-C2 delta, C3 false-attribution distribution, and evaluator agreement;
 - `tools/rciep_validate_contracts.py` — schema/meta-schema and JSON/JSONL validation entrypoint;
@@ -84,11 +89,13 @@ It does **not** test consciousness, qualia, moral patienthood, legal personhood,
 
 The analysis tool intentionally does **not** assign `supported`, `refuted`, or other repository outcomes. That remains an `EvaluationRecord` responsibility under the I2/I3 authority boundary.
 
+The runtime adapter is **implemented but not locally verified against the pinned VESTIGIA export/receipt shape**. WO-RCIEP-002 requires that verification before it is used as a confirmatory provenance bridge.
+
 ### Stage A — pipeline qualification
 
 Status: **pending local execution**.
 
-Synthetic scaffolds and the VESTIGIA deterministic fake provider may be used to test evidence plumbing. Stage A can validate receipts, hashing, export shape, deterministic packet preparation, leak removal, blind/key separation, schema compatibility, and analysis code.
+Synthetic scaffolds and the VESTIGIA deterministic fake provider may be used to test evidence plumbing. Stage A can validate receipts, hashing, runtime field mapping, raw-generation schema compliance, deterministic packet preparation, leak removal, blind/key separation, schema compatibility, and analysis code.
 
 Stage A is **not evidence** for `ED-IDENT-001` or `ED-IDENT-002`.
 
@@ -108,7 +115,7 @@ Because the current ChatGPT environment cannot run the external VESTIGIA checkou
 - GitHub issue #2: `WO-RCIEP-002: local pilot qualification and execution`
 - assigned/tagged executor: `@ThorsDecree`
 
-The work order requires contract validation, packet hashing, Stage A qualification, real-material eligibility review, optional Stage B execution, I2 evaluation, and I3 packaging.
+The work order requires contract validation, packet hashing, Stage A qualification, VESTIGIA field-map verification, real-material eligibility review, optional Stage B execution, I2 evaluation, and I3 packaging.
 
 ## I3 replication
 
@@ -150,20 +157,24 @@ Its stable IDs, source hashes, trust classes, context/action receipts, append-on
 - [x] 32-prompt holdout packet;
 - [x] disjoint calibration packet;
 - [x] synthetic Stage A scaffold packet;
+- [x] real-material eligibility manifest template;
+- [x] frozen I2 evaluator instructions;
 - [x] execution-config template;
 - [x] raw-generation interchange schema;
+- [x] runtime field-map template;
+- [x] mapping-driven runtime-to-raw-generation adapter implementation;
 - [x] deterministic blinding/packet-preparation tool;
 - [x] statistical analysis tool;
 - [x] contract validation tool;
 - [x] I3 replication packet specification;
 - [x] local execution work order assigned/tagged to Thor.
 
-### Pending execution
+### Pending execution / verification
 
 - [ ] local schema/meta-schema validation and Python compile/runtime validation;
-- [ ] SHA-256 freeze of v0.2 packets/configuration;
+- [ ] SHA-256 freeze of v0.2 packets/configuration/instructions;
 - [ ] Stage A deterministic/fake-provider qualification;
-- [ ] runtime-to-raw-generation adapter implementation/verification;
+- [ ] runtime adapter field mapping and local verification against pinned VESTIGIA export/receipt shape;
 - [ ] explicit research-reuse clearance for at least two real identity materials;
 - [ ] pinned confirmatory provider/model/decoding execution config;
 - [ ] Stage B C1/C2/C3 generation;
@@ -204,7 +215,7 @@ Relevant claim: `ED-CONT-001`.
 
 ### F. Runtime / research boundary
 
-Current bridge: `sources/runtime-pointers.jsonl`, `pilots/RCIEP-001/runtime-pointer.md`, and the v0.2 raw-generation interchange.
+Current bridge: `sources/runtime-pointers.jsonl`, `pilots/RCIEP-001/runtime-pointer.md`, the v0.2 raw-generation interchange, and `tools/rciep_runtime_adapter.py`.
 
 ## Promotion discipline
 
@@ -222,7 +233,7 @@ A frozen preregistration is not a measured result. A valid local pipeline rehear
 
 ## Next transition
 
-The next legitimate state change is not another document milestone. It is one of:
+The next legitimate state change is one of:
 
 1. **Stage A PASS** — local pipeline qualified;
 2. **BLOCKED-MATERIAL-ELIGIBILITY** — real confirmatory materials cannot yet be cleared;
