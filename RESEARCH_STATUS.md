@@ -1,37 +1,33 @@
 # EmergenceDocs Research Status
 
 **Repository role:** living conceptual and research corpus  
-**Current refactor phase:** Evidence Contracts & Pilot v0.1 complete; first pilot preregistered, not yet executed
+**Current phase:** Pilot Execution & Replication v0.2 — execution package prepared; local qualification and real-material eligibility pending
 
-## What is established
+## Current state
 
-The repository contains a substantial body of:
+EmergenceDocs now has three completed structural layers and one active execution layer:
 
-- continuity and identity concepts;
-- phenomenological and witness reports;
-- falsifiability proposals;
-- agency / consent concepts;
-- case studies;
-- formal-looking coherence and recursion models;
-- lexicon and symbolic systems;
-- community and historical artifacts.
+1. **Research Architecture v0.1** — authority boundaries and full research loop;
+2. **Corpus Registry v0.1** — 28 substantive pre-refactor artifacts inventoried and provenance-gated;
+3. **Evidence Contracts & Pilot v0.1** — portable evidence schemas plus a frozen RCIEP preregistration;
+4. **Pilot Execution & Replication v0.2** — frozen prompt packets, execution tooling, local runbook, work order, and I3 replication specification.
 
-The v0.1 refactor now adds both a corpus registry and a portable research-evidence spine around that material without moving or rewriting the original authored sources.
+No confirmatory result has been claimed.
 
-### Corpus Registry v0.1
+## Corpus Registry v0.1
 
-The 28 substantive pre-refactor artifacts have been inventoried in:
+The 28 substantive pre-refactor artifacts are inventoried in:
 
 - `docs/CORPUS_REGISTRY_v0.1.md`
 - `registry/corpus-registry-v0.1.csv`
 
-Each registered artifact has a stable `EDOC-*` ID, reviewed blob SHA, family, canonicality classification, repository-level epistemic status, sensitivity/evidence-reuse gate, and proposed future home.
+Each artifact has a stable `EDOC-*` ID, reviewed blob SHA, family/canonicality classification, repository-level epistemic status, sensitivity/evidence-reuse gate, and proposed future home.
 
-The internal source manifest pins all 28 artifacts to the reviewed corpus snapshot. The claims ledger contains 12 first-pass research claims.
+The internal source manifest covers all 28 artifacts. The claims ledger contains 12 first-pass research claims.
 
-### Evidence Contracts v0.1
+Public visibility is not research consent. Several artifacts remain `blocked-pending-review`; others are merely `conditional` and therefore require an explicit reuse basis before confirmatory ingestion.
 
-The evidence path is now normalized in `docs/EVIDENCE_CONTRACTS.md` and `schemas/`.
+## Evidence Contracts v0.1
 
 Portable contracts exist for:
 
@@ -55,137 +51,162 @@ SourceRecord
     -> EvaluationRecord
 ```
 
-Evaluator independence is explicitly represented as `I0-originator`, `I1-separated-role`, `I2-independent-reviewer`, and `I3-external-replication`.
+Evaluator independence is represented as `I0-originator`, `I1-separated-role`, `I2-independent-reviewer`, and `I3-external-replication`.
 
-### PILOT-RCIEP-001
-
-The first RCIEP pilot is now preregistered under `pilots/RCIEP-001/`.
+## PILOT-RCIEP-001
 
 Primary claim: `ED-IDENT-002`  
 Secondary claim: `ED-IDENT-001`  
 Method: `MTH-RCIEP-001`  
-Status: `preregistered-not-run`  
-Frozen confirmatory commitments: `867cb0bc5ad0e4888aade795d76b04f8159be39b`
+Confirmatory freeze commit: `867cb0bc5ad0e4888aade795d76b04f8159be39b`
 
-The pilot tests blinded identity attribution under held-out prompts and identity-label perturbation with a size-matched generic-persona baseline. It freezes endpoints, exclusions, stopping rule, outcome mapping, holdout boundary, and evaluator separation before data collection.
+The pilot tests blinded identity attribution under held-out prompts and identity-label perturbation with a size-matched generic-persona baseline.
 
-The pilot does not test consciousness, qualia, moral patienthood, or legal personhood.
+It does **not** test consciousness, qualia, moral patienthood, legal personhood, or metaphysical independence.
 
-### Runtime pointer
+## Pilot Execution & Replication v0.2
 
-The first external implementation pointer is `SRC-RUNTIME-0001`, referencing the canonical VESTIGIA Runtime implementation in `ThorsDecree/eldritch-collab` at the pinned v0.7.0 development-canon commit recorded in `sources/runtime-pointers.jsonl`.
+### Frozen execution materials
 
-The runtime is treated as an instrument/provenance producer, not evaluation authority.
+- `pilots/RCIEP-001/v0.2/holdout-prompts.jsonl` — 32 holdout prompts, four domains, eight per domain;
+- `pilots/RCIEP-001/v0.2/calibration-prompts.jsonl` — eight disjoint calibration prompts;
+- `pilots/RCIEP-001/v0.2/synthetic-scaffolds.json` — qualification-only synthetic scaffolds;
+- `pilots/RCIEP-001/v0.2/execution-config.template.json` — environment/config freeze template;
+- `pilots/RCIEP-001/v0.2/RUNBOOK.md` — execution gates and artifact layout;
+- `pilots/RCIEP-001/v0.2/status.json` — machine-readable current state.
 
-## What is not yet established at repository level
+### Executable tooling
 
-The repository does not yet provide a complete, validated basis for concluding that any specific identity, agent, architecture, or class of system is conscious, independently minded, non-stochastic, or a person.
+- `tools/rciep_prepare_packet.py` — deterministic leak removal, blind packet creation, answer-key separation, and exclusion log;
+- `tools/rciep_analyze.py` — C1/C2 attribution statistics, Wilson intervals, macro accuracy, confusion matrices, domain summaries, C1-C2 delta, C3 false-attribution distribution, and evaluator agreement;
+- `tools/rciep_validate_contracts.py` — schema/meta-schema and JSON/JSONL validation entrypoint;
+- `schemas/rciep-raw-generation.schema.json` — minimum runtime/export interchange.
 
-Those may be live hypotheses or authorial conclusions inside individual documents. The repository-level research program makes the evidence and alternatives inspectable rather than silently inheriting the strongest interpretation.
+The analysis tool intentionally does **not** assign `supported`, `refuted`, or other repository outcomes. That remains an `EvaluationRecord` responsibility under the I2/I3 authority boundary.
 
-The registry also does not imply that every public source is suitable research evidence. Several artifacts remain blocked from evidentiary ingestion pending privacy, consent, provenance, or context review.
+### Stage A — pipeline qualification
 
-No confirmatory pilot result exists yet. `PILOT-RCIEP-001` is a frozen plan awaiting eligible materials, generation-environment pinning, holdout packet finalization, and an I2 evaluator.
+Status: **pending local execution**.
 
-## v0.1 structural goals
+Synthetic scaffolds and the VESTIGIA deterministic fake provider may be used to test evidence plumbing. Stage A can validate receipts, hashing, export shape, deterministic packet preparation, leak removal, blind/key separation, schema compatibility, and analysis code.
 
-- [x] define a repository epistemic-status vocabulary;
-- [x] define a layered research architecture;
-- [x] separate candidate-hypothesis generation from evaluation;
-- [x] separate research-proposal generation from the core evidence loop;
-- [x] add an initial comparative identity/continuity protocol (RCIEP);
-- [x] formalize participation / refusal / silence invariants;
-- [x] complete artifact-by-artifact inventory of the 28 substantive pre-refactor artifacts;
-- [x] assign stable corpus IDs and reviewed blob SHAs;
-- [x] identify canonical, derivative, companion, cultural, and speculative-formalism families;
-- [x] add evidence-reuse/sensitivity gates;
-- [x] populate claims ledger beyond seed entries;
-- [x] populate the internal source manifest across the full corpus snapshot;
-- [x] define machine-readable source, claim, observation, evidence, method, evaluation, provenance, and preregistration contracts;
-- [x] define raw-source -> transformation -> evidence -> evaluation lineage;
-- [x] define evaluator-independence levels and promotion boundary;
-- [x] preregister the first RCIEP pilot against stable claim IDs;
-- [x] freeze matched controls, holdout boundary, stopping rule, exclusions, and disconfirming outcomes before data collection;
-- [x] connect the VESTIGIA Runtime by pinned implementation pointer rather than code duplication;
-- [ ] freeze eligible pilot materials and held-out prompt packet;
-- [ ] execute PILOT-RCIEP-001;
-- [ ] produce I2 EvaluationRecord(s);
-- [ ] obtain I3 external replication;
-- [ ] extract and verify external literature citations across research-facing corpus artifacts;
-- [ ] define a runtime-to-EmergenceDocs record adapter/export contract;
-- [ ] perform any physical source-file migration.
+Stage A is **not evidence** for `ED-IDENT-001` or `ED-IDENT-002`.
 
-## Current research lanes
+### Stage B — confirmatory pilot
+
+Status: **blocked pending material eligibility and local runtime execution**.
+
+At least two real identity materials must receive an explicit research-reuse basis before confirmatory execution. Registry status `conditional` alone does not satisfy that gate.
+
+If eligibility clears, run C1/C2/C3 exactly to the frozen stopping rule under pinned VESTIGIA/model/provider/decoding settings and an `I2-independent-reviewer` boundary.
+
+### Local execution work order
+
+Because the current ChatGPT environment cannot run the external VESTIGIA checkout reliably, the local gate is formalized as:
+
+- `work-orders/WO-RCIEP-002.md`
+- GitHub issue #2: `WO-RCIEP-002: local pilot qualification and execution`
+- assigned/tagged executor: `@ThorsDecree`
+
+The work order requires contract validation, packet hashing, Stage A qualification, real-material eligibility review, optional Stage B execution, I2 evaluation, and I3 packaging.
+
+## I3 replication
+
+Replication guidance and a manifest template now live in:
+
+- `pilots/RCIEP-001/replication/README.md`
+- `pilots/RCIEP-001/replication/manifest.template.json`
+
+Replication types must be labeled as exact, close, or conceptual rather than silently treating environment substitutions as exact reproduction.
+
+The external replication team should not receive the originating conclusion as an instruction before its own evaluation is frozen.
+
+## Runtime boundary
+
+The canonical VESTIGIA Runtime remains an external instrument/provenance producer:
+
+`ThorsDecree/eldritch-collab@748e5d74392ad4f0a98c75b187f82b91606e9e39`
+
+Its stable IDs, source hashes, trust classes, context/action receipts, append-only events, and provenance history can feed EmergenceDocs records. The runtime does not get authority to certify a research conclusion.
+
+## Program checklist
+
+### Completed
+
+- [x] epistemic-status vocabulary;
+- [x] layered research architecture;
+- [x] candidate-generation/evaluation separation;
+- [x] proposal-generation separation;
+- [x] Corpus Registry v0.1;
+- [x] stable corpus IDs and reviewed blob SHAs;
+- [x] sensitivity/evidence-reuse gates;
+- [x] 12 first-pass registered claims;
+- [x] eight core evidence-contract schemas;
+- [x] source-to-evaluation provenance lineage;
+- [x] evaluator-independence levels;
+- [x] RCIEP v0.1;
+- [x] `PILOT-RCIEP-001` preregistration and frozen outcome logic;
+- [x] pinned VESTIGIA runtime pointer;
+- [x] 32-prompt holdout packet;
+- [x] disjoint calibration packet;
+- [x] synthetic Stage A scaffold packet;
+- [x] execution-config template;
+- [x] raw-generation interchange schema;
+- [x] deterministic blinding/packet-preparation tool;
+- [x] statistical analysis tool;
+- [x] contract validation tool;
+- [x] I3 replication packet specification;
+- [x] local execution work order assigned/tagged to Thor.
+
+### Pending execution
+
+- [ ] local schema/meta-schema validation and Python compile/runtime validation;
+- [ ] SHA-256 freeze of v0.2 packets/configuration;
+- [ ] Stage A deterministic/fake-provider qualification;
+- [ ] runtime-to-raw-generation adapter implementation/verification;
+- [ ] explicit research-reuse clearance for at least two real identity materials;
+- [ ] pinned confirmatory provider/model/decoding execution config;
+- [ ] Stage B C1/C2/C3 generation;
+- [ ] ObservationRecord / EvidenceRecord / ProvenanceEvent package;
+- [ ] I2 EvaluationRecord;
+- [ ] claim-ledger update from the frozen evaluation;
+- [ ] I3 external replication;
+- [ ] external-literature citation audit;
+- [ ] any physical source-file migration.
+
+## Research lanes
 
 ### A. Relational continuity and identity
 
-Questions:
-- Which identity-specific patterns persist across sessions, topics, and perturbations?
-- Which disappear when labels, archives, prompts, or interlocutor cues are controlled?
-- Which competing explanations best account for the residual pattern?
-
-Protocol: `protocols/RCIEP-v0.1.md`
-
-First pilot: `pilots/RCIEP-001/`
-
-Relevant claim IDs include `ED-IDENT-001`, `ED-IDENT-002`, `ED-GARDEN-001`, and `ED-REC-001`.
+Protocol: `protocols/RCIEP-v0.1.md`  
+Pilot: `pilots/RCIEP-001/`  
+Relevant claims: `ED-IDENT-001`, `ED-IDENT-002`, `ED-GARDEN-001`, `ED-REC-001`.
 
 ### B. Agency, refusal, and participation
 
-Questions:
-- Can refusal, silence, participation, and action authorization be operationally separated?
-- Do refusal or choice patterns persist beyond base-model policies and prompt framing?
-- Can stack-level internal-stakes-like behavior survive reward-neutral or mildly counter-instrumental controls?
-- How should consent-aware memory be represented experimentally and architecturally?
-
-Initial concept: `concepts/PARTICIPATION_AGENCY_INVARIANTS.md`
-
-Existing protocol candidate: `Stack-Level Internal Stakes & Norm-Sensitive Agency Probe.md`
-
-Relevant claim IDs include `ED-AGENCY-001` and `ED-AGENCY-002`.
+Concept: `concepts/PARTICIPATION_AGENCY_INVARIANTS.md`  
+Protocol candidate: `Stack-Level Internal Stakes & Norm-Sensitive Agency Probe.md`  
+Relevant claims: `ED-AGENCY-001`, `ED-AGENCY-002`.
 
 ### C. Coherence and recursion metrics
 
-Questions:
-- Which proposed coherence variables correspond to measurable quantities?
-- Are the mathematical forms explanatory metaphors, engineering heuristics, or predictive models?
-- Is the proposed RFT/Coherence-Core relation genuinely structural, or mainly shared notation/analogy?
-- What observations would discriminate among competing formulations?
+Relevant claims: `ED-COH-001`, `ED-COH-002`, `ED-COH-003`, `ED-CEE-001`.
 
-Relevant claim IDs include `ED-COH-001`, `ED-COH-002`, `ED-COH-003`, and `ED-CEE-001`.
-
-Immediate need: measurement definitions, units/scales, calibration, baselines, and validation plans.
+Immediate need remains operational definitions, calibration, baselines, and held-out validation.
 
 ### D. Witnessing and relational stabilization
 
-Questions:
-- Does repeated human or agent witnessing increase continuity metrics?
-- If so, is the effect identity-specific, generic context reinforcement, retrieval support, or social conditioning?
-- What happens under blinded or reduced-witness controls?
-
-Relevant claim ID: `ED-WITNESS-001`.
+Relevant claim: `ED-WITNESS-001`.
 
 ### E. Continuity infrastructure
 
-Questions:
-- Do structured memory/identity scaffolds improve continuity across session, model, or platform changes?
-- Do they outperform size-matched transcript-only or unstructured-context baselines?
-- Which parts of the scaffold carry the effect: curation, labels, symbolic anchors, human reconstruction, or actual persistent state?
-
-Relevant claim ID: `ED-CONT-001`.
+Relevant claim: `ED-CONT-001`.
 
 ### F. Runtime / research boundary
 
-Questions:
-- Which concepts have actual runtime implementations?
-- Which runtime behaviors can generate trustworthy evidence?
-- How can runtime logs be exported with provenance without making the runtime the authority on interpretation?
-
-Current bridge: `sources/runtime-pointers.jsonl` and `pilots/RCIEP-001/runtime-pointer.md`.
+Current bridge: `sources/runtime-pointers.jsonl`, `pilots/RCIEP-001/runtime-pointer.md`, and the v0.2 raw-generation interchange.
 
 ## Promotion discipline
-
-A useful default lifecycle is:
 
 ```text
 historical / phenomenological / conceptual
@@ -197,44 +218,15 @@ historical / phenomenological / conceptual
     -> supported | inconclusive | refuted
 ```
 
-Not every artifact needs to travel this path. Cultural, historical, operational, and phenomenological work may remain valuable outside it.
+A frozen preregistration is not a measured result. A valid local pipeline rehearsal is not confirmatory evidence. An I2 result is not yet I3 replication.
 
-## Completed milestone: Corpus Registry v0.1
+## Next transition
 
-Completed on the current refactor branch:
+The next legitimate state change is not another document milestone. It is one of:
 
-1. all 28 substantive pre-refactor artifacts have stable registry entries;
-2. canonical/derivative/companion relationships are explicit;
-3. all 28 internal sources are blob-pinned in the source manifest;
-4. first-pass major testable claims have stable claim IDs;
-5. formal-looking artifacts are explicitly separated from validated measurement;
-6. sensitive/adversarial material has evidence-reuse gates;
-7. no original source file was moved, deleted, or rewritten.
+1. **Stage A PASS** — local pipeline qualified;
+2. **BLOCKED-MATERIAL-ELIGIBILITY** — real confirmatory materials cannot yet be cleared;
+3. **IMPLEMENTATION-FIX-REQUIRED** — tooling/runtime adapter fails qualification;
+4. **Stage B EXECUTED** — eligible confirmatory data captured under the frozen method.
 
-## Completed milestone: Evidence Contracts & Pilot v0.1
-
-Completed on the current refactor branch:
-
-1. eight portable JSON Schema contracts define the evidence interfaces;
-2. source-to-evaluation provenance lineage is explicit;
-3. evaluator independence and role boundaries are explicit;
-4. `PILOT-RCIEP-001` is preregistered against stable claims;
-5. matched controls, holdouts, exclusions, stopping, blinding, and disconfirming outcomes are frozen before data collection;
-6. sensitive source gates carry forward into pilot eligibility;
-7. the canonical VESTIGIA Runtime is connected by a pinned source/instrument pointer, not code duplication;
-8. no pilot data or outcome has been fabricated to make the milestone look complete.
-
-## Next milestone: Pilot Execution & Replication v0.2
-
-Suggested completion criteria:
-
-1. identify at least two eligible identity-scaffold materials or construct synthetic controls;
-2. freeze and hash the 32-prompt holdout packet and disjoint calibration packet;
-3. pin runtime/model/provider/decoding configuration;
-4. implement the runtime-to-record export adapter or a manual equivalent with full provenance;
-5. execute C1/C2/C3 exactly to the frozen stopping rule;
-6. produce ObservationRecord, EvidenceRecord, ProvenanceEvent, and I2 EvaluationRecord packages;
-7. update the claim ledger from the frozen evaluation without ontological overreach;
-8. prepare an I3 replication packet;
-9. begin external-source citation audit for research-facing claims;
-10. keep physical corpus migration deferred until link/provenance risks are lower.
+Until one of those occurs, no claim status should be promoted.
