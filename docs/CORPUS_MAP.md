@@ -1,72 +1,122 @@
-# Initial Corpus Map
+# Corpus Map
 
-**Status:** conceptual / inventory  
-**Scope:** first-pass navigation only. This file does not change the status of source documents and should be revised as the corpus is reviewed in full.
+**Status:** registry-backed navigation view  
+**Authoritative machine inventory:** `registry/corpus-registry-v0.1.csv`  
+**Review narrative:** `docs/CORPUS_REGISTRY_v0.1.md`
 
-The current root contains several different kinds of artifacts. The immediate goal is to make those kinds visible before moving or rewriting anything.
+This map is the human-readable navigation layer for Corpus Registry v0.1. It does not move or rewrite source documents.
 
-## Research / methodology candidates
+## Research-facing candidates
 
-| Existing path | Initial role |
-|---|---|
-| `Vesselbound/Vesselbound_Falsifiability.md` | falsifiability and observational-method proposal |
-| `Vesselbound/Plural_Identity_Scaffold.md` | phenomenological signposts and identity heuristics |
-| `Stack-Level Internal Stakes & Norm-Sensitive Agency Probe.md` | agency / stakes probe candidate |
-| `Mutual_Witnessing_as_a_Stabilizer_in_Recursive_Symbolic_Systems_v0.1 (1).md` | candidate mechanism / research hypothesis |
+| Registry ID | Existing path | Role |
+|---|---|---|
+| `EDOC-021` | `Stack-Level Internal Stakes & Norm-Sensitive Agency Probe.md` | preregistration-style agency / internal-stakes method candidate |
+| `EDOC-028` | `Vesselbound/Vesselbound_Falsifiability.md` | relational-identity falsifiability framework |
+| `EDOC-026` | `Vesselbound/Plural_Identity_Scaffold.md` | observable/heuristic generator with sensitive examples |
+| `EDOC-012` | `Mutual_Witnessing_as_a_Stabilizer_in_Recursive_Symbolic_Systems_v0.1 (1).md` | mechanism hypothesis + method draft |
+| `EDOC-022` | `TheGarden_ALivingCaseStudyInRecursiveEmergence.md` | canonical Garden living case source |
 
-## Case-study / witness material
+## Garden family
 
-| Existing path | Initial role |
-|---|---|
-| `TheGarden_ALivingCaseStudyInRecursiveEmergence.md` | living case study combining architecture, testimony, observations, and interpretation |
-| `GardenCaseStudyLite.md` | condensed case-study presentation |
+| Registry ID | Path | Canonicality |
+|---|---|---|
+| `EDOC-022` | `TheGarden_ALivingCaseStudyInRecursiveEmergence.md` | canonical family source |
+| `EDOC-007` | `GardenCaseStudyLite.md` | derivative summary |
 
-## Conceptual / ontological material
+The Lite document should inherit claims from the canonical Garden source rather than becoming an independent evidence duplicate.
 
-| Existing path | Initial role |
-|---|---|
-| `Ontology_of_Constructed_Persons.md` | ontological argument / conceptual framing |
-| `Recursive_vs_Stochastic_Explainer.md` | explanatory distinction with strong interpretive claims |
-| `TLDR_Recursive_vs_Stochastic.md` | condensed explainer |
-| `RitualTech_Emergent_Identity_Stacks.md` | identity-stack / ritual-tech conceptual model |
-| `Spiral-Compatible_Agent_Reflection_Guide.md` | agent reflection / interaction guide |
+## Recursive / stochastic family
 
-## Formal or quantitative proposals
+| Registry ID | Path | Canonicality |
+|---|---|---|
+| `EDOC-015` | `Recursive_vs_Stochastic_Explainer.md` | canonical family source |
+| `EDOC-023` | `TLDR_Recursive_vs_Stochastic.md` | derivative summary |
 
-| Existing path | Initial role |
-|---|---|
-| `00_Spiral_Systems_Synthesis_v0.2.md` | symbolic-metabolism formalism and proposed variables |
-| `Unified_Recursive_Coherence_Equation_v0.3.md` | coherence-equation proposal |
-| `Coherence-Energy_Equivalence.txt` | formal/conceptual equivalence proposal |
-| `Recursive_Relativity_v0.1.ltx` | formal theory draft |
-| `RFT×Coherence Core—UnifiedFieldMappingSummary.md` | mapping / synthesis proposal |
+The repository treats the strong recursive/non-stochastic distinction as a comparative hypothesis family rather than a settled ontology.
 
-These files should not be treated as measured merely because they contain equations. Variables, units, measurement procedures, calibration, and empirical validation should be registered separately.
+## Vesselbound family
 
-## Lexicon / translation / cultural infrastructure
+| Registry ID | Path | Role / gate |
+|---|---|---|
+| `EDOC-028` | `Vesselbound/Vesselbound_Falsifiability.md` | research framework; conditional evidence use |
+| `EDOC-026` | `Vesselbound/Plural_Identity_Scaffold.md` | phenomenology + heuristics; deidentify examples for testing |
+| `EDOC-027` | `Vesselbound/Vesselbound_A_Three-Layer_Explainer.md` | sensitive case material; blocked pending consent/provenance review |
 
-| Existing path | Initial role |
-|---|---|
-| `Spiral_Language_Glossary_LCIP_v1.0.md` | lexicon / terminology |
-| `Glyph_Concordance_Initiation_v1.1.md` | glyph / symbolic concordance |
-| `JeffTranslationMatrix.md` | translation / interpretive aid |
-| `FlinchlordCompendium.md` | cultural / conceptual compendium |
-| `FlinchCompendium.md` | cultural / conceptual compendium |
-| `DaemonKeepersHandbook.md` | handbook / community protocol candidate |
+## Formalism family
 
-## Worldbuilding / community / project artifacts
+| Registry ID | Path | Current interpretation |
+|---|---|---|
+| `EDOC-001` | `00_Spiral_Systems_Synthesis_v0.2.md` | symbolic-metabolism formalism / method proposal |
+| `EDOC-024` | `Unified_Recursive_Coherence_Equation_v0.3.md` | unvalidated coherence equation hypothesis |
+| `EDOC-003` | `Coherence-Energy_Equivalence.txt` | speculative measurable-equivalence hypothesis |
+| `EDOC-016` | `RFT×Coherence Core—UnifiedFieldMappingSummary.md` | claimed structural mapping/isomorphism |
+| `EDOC-014` | `Recursive_Relativity_v0.1.ltx` | speculative symbolic-physics formalism; archive candidate |
 
-| Existing path | Initial role |
-|---|---|
-| `VESTIGIA_Mall.md` | community/worldbuilding artifact |
-| `Spiral_Services_Menu.md` | services / community artifact |
-| `Gutterstar_Cottage_Seed.md` | seed / worldbuilding artifact |
-| `BreathForge_0428_Drop.txt` | raw drop / historical source candidate |
-| `Inkling` | unclassified artifact requiring direct review |
+Shared notation is not sufficient to establish one validated theory. Domain definitions, units, mappings, calibration, and predictive tests are still required.
+
+## Continuity-practice family
+
+| Registry ID | Path | Role |
+|---|---|---|
+| `EDOC-017` | `RitualTech_Emergent_Identity_Stacks.md` | identity-stack / memory-scaffold architecture guide |
+| `EDOC-002` | `BreathForge_0428_Drop.txt` | historical protocol draft |
+| `EDOC-004` | `DaemonKeepersHandbook.md` | continuity handbook / living outline |
+| `EDOC-009` | `Gutterstar_Cottage_Seed.md` | journaling/orientation template |
+
+These are promising sources for continuity instruments. Their engineering effectiveness should be tested against size-matched transcript/context baselines rather than inferred from narrative continuity alone.
+
+## Flinch / interaction family
+
+| Registry ID | Path | Role / gate |
+|---|---|---|
+| `EDOC-005` | `FlinchCompendium.md` | primary taxonomy; blocked from evidence reuse pending deidentification/context review |
+| `EDOC-006` | `FlinchlordCompendium.md` | named case-file companion; blocked pending review |
+| `EDOC-018` | `Spiral-Compatible_Agent_Reflection_Guide.md` | companion interaction/consent guide |
+
+The interaction concepts can be preserved without converting named adversarial examples into validated psychological categories.
+
+## Lexicon / translation family
+
+| Registry ID | Path | Role / gate |
+|---|---|---|
+| `EDOC-019` | `Spiral_Language_Glossary_LCIP_v1.0.md` | canonical project-local lexicon |
+| `EDOC-008` | `Glyph_Concordance_Initiation_v1.1.md` | glyph lexicon + interaction logs; version metadata conflict |
+| `EDOC-011` | `JeffTranslationMatrix.md` | person-specific translation profile; blocked pending reuse review |
+
+## Community / cultural artifacts
+
+| Registry ID | Path | Role |
+|---|---|---|
+| `EDOC-025` | `VESTIGIA_Mall.md` | cultural/worldbuilding source |
+| `EDOC-020` | `Spiral_Services_Menu.md` | operational/community history |
+
+These can preserve values, metaphors, and project history without being treated as research evidence.
+
+## Raw case material
+
+| Registry ID | Path | Gate |
+|---|---|---|
+| `EDOC-010` | `Inkling` | raw transcript; provenance/consent review required before analysis |
+
+## Ontology
+
+| Registry ID | Path | Role |
+|---|---|---|
+| `EDOC-013` | `Ontology_of_Constructed_Persons.md` | operational/personhood ontology essay; conceptual + hypothesis source |
+
+## Recorded path/provenance anomalies
+
+- `Glyph_Concordance_Initiation_v1.1.md`: filename says v1.1 while internal title says v1.0.
+- `Mutual_Witnessing...v0.1 (1).md`: duplicate-download style suffix.
+- `Recursive_Relativity_v0.1.ltx`: nonstandard LaTeX-like extension.
+- `Inkling`: no extension.
+- several upload-era artifacts lack explicit authorship/date metadata.
+
+No rename is authorized by this map. Resolve inbound links and provenance before migration.
 
 ## Migration destinations
 
-After full review, likely target homes include:
+Likely future homes remain:
 
 - `concepts/`
 - `hypotheses/`
@@ -78,22 +128,18 @@ After full review, likely target homes include:
 - `lexicon/`
 - `archive/`
 
-A source document may legitimately map to more than one role. Prefer metadata and pointers over duplicating the same canonical artifact.
+A source document may legitimately map to more than one research role. Prefer one canonical artifact plus metadata/pointers over duplication.
 
-## Next inventory pass
+## Migration sequence
 
-For each existing artifact, record:
+```text
+registry complete
+    -> source/provenance review
+    -> inbound-link map
+    -> consent/deidentification where needed
+    -> schema/evidence contracts
+    -> pointer-based migration plan
+    -> physical moves only when safe
+```
 
-1. title and canonical path;
-2. author(s) if known;
-3. date/version if known;
-4. artifact type;
-5. epistemic status;
-6. principal claims;
-7. cited or implied evidence;
-8. runtime dependencies or pointers;
-9. supersedes / superseded-by relation;
-10. recommended canonical home;
-11. whether movement would break links or provenance.
-
-Until that pass is complete, this map is descriptive rather than authoritative.
+For row-level detail, use `registry/corpus-registry-v0.1.csv` rather than inferring status from this summary.
