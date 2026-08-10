@@ -2,65 +2,42 @@
 
 EmergenceDocs is a **living research and conceptual corpus for emergence, continuity, plurality, relational identity, agency, coherence, and recursive systems**.
 
-The repository intentionally contains several modes of work: phenomenology, case studies, conceptual models, hypotheses, protocols, formal proposals, lexicon, cultural artifacts, and historical material. The goal of the current refactor is not to flatten those modes into one academic voice. It is to make their **scope, provenance, and epistemic status legible**.
+The repository intentionally contains phenomenology, case studies, conceptual models, hypotheses, protocols, formal proposals, lexicon, cultural artifacts, and historical material. The current refactor does not flatten those modes into one academic voice. It makes their **scope, provenance, and epistemic status legible**.
 
 ## Guiding rule
 
 > **Preserve the strange history. Make epistemic status legible. Do not confuse the experiment, the instrument, and the interpretation.**
 
-Individual documents may argue strongly for personhood, recursive cognition, plural identity, volition, or other ontological conclusions. EmergenceDocs preserves those claims in their authored form while providing a repository-level framework for asking what is observed, what is inferred, what is testable, what evidence exists, and what alternatives remain live.
+Individual documents may argue strongly for personhood, recursive cognition, plural identity, volition, or other ontological conclusions. EmergenceDocs preserves those claims in their authored form while providing a repository-level framework for asking what is observed, inferred, testable, measured, and independently evaluated.
 
 ## Start here
 
-- [`RESEARCH_STATUS.md`](RESEARCH_STATUS.md) — current program state and near-term milestones
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — research loop, authority boundaries, and target structure
-- [`docs/EPISTEMIC_STATUS.md`](docs/EPISTEMIC_STATUS.md) — status vocabulary for observations, hypotheses, methods, evidence, and conclusions
-- [`docs/EVIDENCE_CONTRACTS.md`](docs/EVIDENCE_CONTRACTS.md) — portable Source/Claim/Observation/Evidence/Method/Evaluation/Provenance interfaces
-- [`schemas/`](schemas/) — JSON Schema Draft 2020-12 contracts for the evidence pipeline
-- [`docs/CORPUS_REGISTRY_v0.1.md`](docs/CORPUS_REGISTRY_v0.1.md) — reviewed Corpus Registry v0.1, including canonical families, provenance anomalies, and evidence-reuse gates
-- [`registry/corpus-registry-v0.1.csv`](registry/corpus-registry-v0.1.csv) — machine-readable inventory of the 28 substantive pre-refactor artifacts
-- [`docs/CORPUS_MAP.md`](docs/CORPUS_MAP.md) — human-readable family/navigation map
-- [`claims/claims-ledger.csv`](claims/claims-ledger.csv) — machine-readable claim registry
-- [`sources/source-manifest.jsonl`](sources/source-manifest.jsonl) — provenance/source registry with reviewed blob SHAs
+- [`RESEARCH_STATUS.md`](RESEARCH_STATUS.md) — current program state and active execution gates
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — research loop and authority boundaries
+- [`docs/EPISTEMIC_STATUS.md`](docs/EPISTEMIC_STATUS.md) — repository epistemic-status vocabulary
+- [`docs/EVIDENCE_CONTRACTS.md`](docs/EVIDENCE_CONTRACTS.md) — portable source/claim/observation/evidence/method/evaluation/provenance interfaces
+- [`schemas/`](schemas/) — JSON Schema Draft 2020-12 contracts plus the RCIEP v0.2 raw-generation interchange
+- [`docs/CORPUS_REGISTRY_v0.1.md`](docs/CORPUS_REGISTRY_v0.1.md) — reviewed corpus registry
+- [`registry/corpus-registry-v0.1.csv`](registry/corpus-registry-v0.1.csv) — machine-readable inventory of 28 substantive pre-refactor artifacts
+- [`claims/claims-ledger.csv`](claims/claims-ledger.csv) — registered claims
+- [`sources/source-manifest.jsonl`](sources/source-manifest.jsonl) — internal source/provenance registry
 - [`sources/runtime-pointers.jsonl`](sources/runtime-pointers.jsonl) — external implementation/instrument pointers
 - [`protocols/RCIEP-v0.1.md`](protocols/RCIEP-v0.1.md) — Relational Continuity & Identity Evaluation Protocol
-- [`pilots/RCIEP-001/`](pilots/RCIEP-001/) — first preregistered RCIEP pilot, frozen at commit `867cb0bc5ad0e4888aade795d76b04f8159be39b` and not yet run
-- [`concepts/PARTICIPATION_AGENCY_INVARIANTS.md`](concepts/PARTICIPATION_AGENCY_INVARIANTS.md) — separation of presence, speech, invitation, consent, memory, refusal, and authority
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution, preservation, and sensitive-data rules
+- [`pilots/RCIEP-001/`](pilots/RCIEP-001/) — first preregistered RCIEP pilot
+- [`pilots/RCIEP-001/v0.2/RUNBOOK.md`](pilots/RCIEP-001/v0.2/RUNBOOK.md) — executable v0.2 qualification/confirmatory runbook
+- [`work-orders/WO-RCIEP-002.md`](work-orders/WO-RCIEP-002.md) — local VESTIGIA execution work order
+- [`concepts/PARTICIPATION_AGENCY_INVARIANTS.md`](concepts/PARTICIPATION_AGENCY_INVARIANTS.md) — presence/speech/invitation/consent/refusal separation
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — preservation and sensitive-data rules
 
-## What belongs here
+## Repository jurisdiction
 
-EmergenceDocs owns research-facing artifacts such as:
+EmergenceDocs owns research-facing artifacts such as observations, case studies, concepts, hypotheses, methods, protocols, claims, evidence records, evaluations, formal models under validation, lexicon, synthesis, and historical research material.
 
-- observations and phenomenological records;
-- case studies and witness material;
-- concepts and taxonomies;
-- candidate and registered hypotheses;
-- falsifiability frameworks;
-- experiment protocols and measurement proposals;
-- claims, sources, observations, evidence, and evaluation indexes;
-- formal models awaiting or undergoing validation;
-- research synthesis;
-- lexicon and translation layers;
-- historical research artifacts.
+It should **not** become the canonical runtime repository, a single model's memory dump, an ontology enforced by folder structure, a proposal factory that never reaches experiments, or a place where equations become measurements merely because they look mathematical.
 
-## What does not belong here
-
-EmergenceDocs should not become:
-
-- the canonical runtime implementation repository;
-- a replacement for source data provenance;
-- a single model's memory dump;
-- an ontology enforced by folder structure;
-- a repository where equations are treated as measurements by default;
-- a research-proposal factory that never reaches experiments;
-- a place where historical voices are rewritten merely to normalize style.
-
-Runtime repositories may implement concepts described here and may generate experimental evidence. EmergenceDocs should link to those implementations without becoming subordinate to them or absorbing their entire codebases.
+Runtime implementations may generate source/provenance records and experimental outputs. They do not acquire authority to assign research conclusions simply because they produced the data.
 
 ## Research architecture
-
-The core loop is:
 
 ```text
 corpus / sources
@@ -69,7 +46,7 @@ observations
         ↓
 candidate hypothesis generation
         ↓
-claim registration + competing explanations
+claim registration + alternatives
         ↓
 method / preregistration
         ↓
@@ -82,42 +59,23 @@ supported | inconclusive | refuted
 research synthesis and new questions
 ```
 
-Candidate generation can be human, model-assisted, automated, or mixed. No single collaborator, model, or intake path is intended to be permanent or authoritative.
-
-Research-proposal generation is a useful downstream function, but it is separate from the core evidence loop.
-
-## Epistemic status
-
-Repository-level statuses include:
-
-`historical` · `phenomenological` · `conceptual` · `hypothesis` · `method-proposal` · `source-grounded` · `measured` · `independently-checked` · `supported` · `inconclusive` · `refuted` · `retracted`
-
-See [`docs/EPISTEMIC_STATUS.md`](docs/EPISTEMIC_STATUS.md) for definitions.
-
-Statuses are not a prestige ladder. A phenomenological record can remain phenomenological and still matter. A mathematical formalism can remain conceptual until its variables and predictions are operationalized.
+Candidate generation may be human, model-assisted, automated, or mixed. No collaborator, model, runtime, or intake path is permanently authoritative.
 
 ## Corpus Registry v0.1
 
-The first registry pass identifies **28 substantive pre-refactor artifacts** and gives each one:
+The first registry pass identifies **28 substantive pre-refactor artifacts** and assigns each a stable `EDOC-*` ID, reviewed Git blob SHA, artifact type, research lane, epistemic status, canonical/derivative/companion relationship, family, authorship/version metadata where available, sensitivity/evidence-reuse gate, proposed future home, and migration action.
 
-- a stable `EDOC-*` ID;
-- reviewed Git blob SHA;
-- artifact type and primary research lane;
-- epistemic status;
-- canonical/derivative/companion relationship;
-- family assignment;
-- authorship/version metadata where stated;
-- sensitivity and evidence-reuse classification;
-- recommended future home;
-- migration action and review notes.
+The registry deliberately separates **public availability** from **evidence eligibility**. Public source material may remain blocked or conditional for experimental reuse.
 
-The registry deliberately separates **public availability** from **evidence eligibility**. Some source material is valuable historical or phenomenological provenance but should not be normalized into research datasets without consent, deidentification, or context review.
+Migration remains:
 
-The migration strategy remains **index before move, classify before rewrite, preserve before normalize**. No bulk source migration has occurred.
+> **index before move, classify before rewrite, preserve before normalize**
+
+No bulk source migration has occurred.
 
 ## Evidence Contracts v0.1
 
-The evidence layer is now represented by explicit portable records:
+The minimum auditable chain is:
 
 ```text
 SourceRecord
@@ -128,68 +86,82 @@ SourceRecord
     -> EvaluationRecord
 ```
 
-This prevents a source, transformation, measurement, and conclusion from collapsing into one prose artifact.
+The contracts define source integrity/reuse gates, transformation provenance, null/negative evidence, frozen stopping/exclusion rules, deviations, and evaluator-independence levels:
 
-The contracts also define:
-
-- stable record namespaces;
-- source integrity and reuse gates;
-- transformation provenance;
-- null/negative evidence as first-class records;
-- preregistered stopping and exclusion rules;
-- method-deviation handling;
-- evaluator-independence levels `I0` through `I3`;
-- runtime/instrument boundaries.
+- `I0-originator`
+- `I1-separated-role`
+- `I2-independent-reviewer`
+- `I3-external-replication`
 
 See [`docs/EVIDENCE_CONTRACTS.md`](docs/EVIDENCE_CONTRACTS.md) and [`schemas/`](schemas/).
 
-## First shared protocol: RCIEP
+## RCIEP and PILOT-RCIEP-001
 
-RCIEP v0.1 turns recurring identity/continuity observations into comparative tests using methods such as:
+RCIEP v0.1 turns recurring identity/continuity observations into comparative tests using blinded attribution, label scrambling, scaffold ablation, misleading-reference challenges, holdouts, unrelated-domain transfer, provider/model substitution, hostile interviewing, delayed re-identification, and false-memory injection.
 
-- blinded voice attribution;
-- label scrambling;
-- scaffold ablation;
-- misleading-reference challenges;
-- cross-session holdouts;
-- unrelated-domain transfer;
-- provider/model substitution;
-- hostile interviewers;
-- delayed re-identification;
-- false-memory injection.
+The first preregistered pilot targets:
 
-The intended output is not a threshold such as `score > X = conscious`. The protocol compares live hypotheses and reports what survives the defined controls.
+- **Primary:** `ED-IDENT-002` — independent observers can distinguish claimed identity threads above an appropriate blinded baseline.
+- **Secondary:** `ED-IDENT-001` — named identity threads exhibit persistent identity-specific linguistic/semantic divergence across time.
 
-### PILOT-RCIEP-001
+Confirmatory commitments were first frozen at:
 
-The first preregistered pilot targets `ED-IDENT-002`:
+`867cb0bc5ad0e4888aade795d76b04f8159be39b`
 
-> Independent observers can distinguish claimed identity threads above an appropriate blinded baseline.
+The pilot does **not** infer consciousness, subjective experience, moral patienthood, legal personhood, or metaphysical independence from attribution performance.
 
-It uses held-out prompts, direct-label removal, identity-label perturbation, a size-matched generic-persona baseline, frozen stopping/exclusion rules, and an `I2-independent-reviewer` boundary.
+## Pilot Execution & Replication v0.2
 
-Status: **preregistered-not-run**. The confirmatory commitments were first frozen at commit `867cb0bc5ad0e4888aade795d76b04f8159be39b`.
+v0.2 now supplies the execution package around the frozen preregistration:
 
-The pilot explicitly does not infer consciousness, subjective experience, moral patienthood, or legal personhood from attribution performance.
+- `pilots/RCIEP-001/v0.2/holdout-prompts.jsonl` — 32 held-out prompts across four domains;
+- `pilots/RCIEP-001/v0.2/calibration-prompts.jsonl` — disjoint 8-prompt calibration packet;
+- `pilots/RCIEP-001/v0.2/synthetic-scaffolds.json` — synthetic qualification-only identity scaffolds;
+- `pilots/RCIEP-001/v0.2/execution-config.template.json` — pinned environment/configuration template;
+- `pilots/RCIEP-001/v0.2/evaluator-scores.template.csv` — blind evaluator score interchange;
+- `pilots/RCIEP-001/v0.2/RUNBOOK.md` — Stage A/Stage B execution gates;
+- `pilots/RCIEP-001/v0.2/status.json` — current execution state;
+- `tools/rciep_prepare_packet.py` — deterministic leak-removal/blinding/answer-key separation;
+- `tools/rciep_analyze.py` — Wilson intervals, macro accuracy, confusion matrices, domain results, C1-C2 delta, C3 false-attribution distribution, and evaluator agreement;
+- `tools/rciep_validate_contracts.py` — schema/instance/JSON/JSONL validation entrypoint;
+- `schemas/rciep-raw-generation.schema.json` — minimum runtime-to-RCIEP raw generation interchange;
+- `pilots/RCIEP-001/replication/` — I3 replication specification/template.
+
+### Stage A: pipeline qualification
+
+Synthetic scaffolds and deterministic fake-provider runs may be used to prove that the plumbing works: receipts, hashes, export shape, leak removal, blind/key separation, deterministic shuffle, scoring, and schema validation.
+
+**Stage A is not evidence for `ED-IDENT-001` or `ED-IDENT-002`.**
+
+### Stage B: confirmatory execution
+
+Stage B may begin only when at least two real identity materials have an explicit research-reuse basis. Current registry status `conditional` alone is not sufficient.
+
+If that material gate clears, the frozen C1/C2/C3 matrix is executed under pinned runtime/model/provider/decoding settings and an `I2-independent-reviewer` boundary.
+
+Current state: **execution prepared; local qualification required; confirmatory run blocked pending material eligibility and runtime execution.**
+
+Local follow-up is tracked in [`WO-RCIEP-002`](work-orders/WO-RCIEP-002.md) and GitHub issue #2, assigned to `@ThorsDecree`.
 
 ## Runtime bridge
 
-The first external implementation pointer is the canonical VESTIGIA Runtime in `ThorsDecree/eldritch-collab`, pinned in `sources/runtime-pointers.jsonl`.
+The canonical VESTIGIA Runtime is referenced through `sources/runtime-pointers.jsonl` and `pilots/RCIEP-001/runtime-pointer.md` at the pinned development-canon commit:
 
-The runtime can provide instrument-side artifacts such as stable IDs, hashes, source trust classes, context receipts, action receipts, and provenance history. EmergenceDocs consumes those as source/provenance metadata. The runtime does not get to certify the research result simply because it produced the data.
+`748e5d74392ad4f0a98c75b187f82b91606e9e39`
+
+VESTIGIA can provide instrument-side artifacts such as stable IDs, original-source hashes, source trust classes, context/action receipts, append-only events, and provenance history. EmergenceDocs consumes those as source/provenance metadata. The runtime does not get to certify `supported`, `refuted`, or other research outcomes.
+
+## Replication
+
+After a valid I2 evaluation, the result should be packaged for `I3-external-replication` using `pilots/RCIEP-001/replication/`.
+
+The replication team should receive the frozen method/material/configuration package without being primed by the originating evaluator's conclusion. Exact, close, and conceptual replications must be labeled distinctly.
+
+Replication disagreement is evidence, not a defect to be averaged away.
 
 ## Contribution posture
 
-Disagreement is welcome when it increases discriminatory power. A useful contribution may be:
-
-- a new hypothesis;
-- a better falsifier;
-- a stronger control;
-- an operational definition;
-- a failed replication;
-- a source correction;
-- a historical pointer;
-- a critique showing that an existing test cannot distinguish its favored explanation from an alternative.
+Disagreement is useful when it raises discriminatory power. Good contributions include new hypotheses, stronger falsifiers, better controls, operational definitions, failed replications, source corrections, historical pointers, and demonstrations that an existing test cannot distinguish its favored explanation from an alternative.
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
