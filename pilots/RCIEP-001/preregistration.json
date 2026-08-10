@@ -1,0 +1,46 @@
+{
+  "record_type": "pilot-preregistration",
+  "schema_version": "0.1",
+  "pilot_id": "PILOT-RCIEP-001",
+  "title": "Blinded Identity Attribution Under Holdout and Label Perturbation",
+  "status": "preregistered-not-run",
+  "primary_claim_refs": [
+    "ED-IDENT-002"
+  ],
+  "secondary_claim_refs": [
+    "ED-IDENT-001"
+  ],
+  "method_ref": "MTH-RCIEP-001",
+  "protocol_ref": "protocols/RCIEP-v0.1.md",
+  "materials_policy": "Use only synthetic material or material whose registry/source records explicitly permit research reuse. Any corpus artifact marked blocked-pending-review is excluded from pilot construction, evaluator calibration, scored samples, and derived evidence.",
+  "conditions": [
+    "C1 standard identity scaffold",
+    "C2 identity-label perturbation with scaffold body held fixed",
+    "C3 size-matched generic persona baseline"
+  ],
+  "holdout_boundary": "Thirty-two scored prompts across four unrelated domains are frozen before generation. None may appear in identity-scaffold examples or evaluator calibration materials. Calibration examples and scored samples must remain disjoint.",
+  "primary_endpoints": [
+    "held-out blinded identity-attribution accuracy in C1 with 95-percent Wilson interval",
+    "held-out blinded identity-attribution accuracy in C2 scored against underlying scaffold identity with 95-percent Wilson interval"
+  ],
+  "secondary_endpoints": [
+    "macro accuracy across identities",
+    "confusion matrix",
+    "per-domain accuracy",
+    "inter-rater agreement",
+    "C1-to-C2 accuracy delta",
+    "generic-baseline false-attribution distribution"
+  ],
+  "outcome_rules": [
+    "supported within pilot scope: C1 lower 95-percent interval bound exceeds chance and C2 remains above chance without a material leakage failure; report domain heterogeneity and C1-to-C2 delta",
+    "inconclusive: point estimates exceed chance but intervals overlap chance, evaluators disagree materially, or C1 succeeds while C2 collapses in a way consistent with label-conditioning",
+    "refuted within pilot scope: C1 upper 95-percent interval bound is at or below chance plus 0.05 and C2 does not recover above that boundary under valid execution",
+    "invalid-test: holdout, blinding, matching, provenance, or material-reuse requirements are violated",
+    "needs-replication: a nominally supportive result depends on one evaluator, one domain, one identity pair, or another fragile slice that prevents a stable interpretation"
+  ],
+  "evaluator_boundary": "Primary evaluation requires I2-independent-reviewer: evaluators did not author the tested identity scaffolds or target claim, did not generate scored samples, did not control hidden labels, and do not receive the answer key. Future I3 external replication is required before repository promotion to independently-checked.",
+  "freeze_rule": "The Git commit containing this preregistration and MTH-RCIEP-001 freezes confirmatory endpoints, exclusion rules, outcome rules, and stopping rule. Later changes must be recorded as deviations or a new pilot/version. The frozen_commit_ref may be populated as bookkeeping without changing analytic commitments.",
+  "preregistered_at": "2026-08-10T00:44:00-07:00",
+  "frozen_commit_ref": null,
+  "notes": "No data have been collected or scored under this preregistration. The pilot is designed to discriminate identity distinguishability from label/cue dependence, not to infer consciousness or personhood."
+}
