@@ -53,18 +53,93 @@ If a contribution makes a testable research claim:
 4. state what outcome would weaken or disconfirm the claim where possible;
 5. link supporting evidence rather than embedding provenance only in prose.
 
+For confirmatory or preregistered work, also create a v0.1 `ClaimRecord` snapshot when a frozen machine-readable claim is needed.
+
+## Evidence contracts
+
+New confirmatory research should use the contracts in:
+
+- `docs/EVIDENCE_CONTRACTS.md`
+- `schemas/`
+
+The expected lineage is:
+
+```text
+SourceRecord
+    -> ProvenanceEvent
+    -> ObservationRecord
+    -> EvidenceRecord
+    -> MethodRecord / PilotPreregistration
+    -> EvaluationRecord
+```
+
+Do not skip a record boundary merely because the same person or script performed two steps.
+
+A generated result is not self-validating simply because the producing runtime wrote a receipt.
+
+## Preregistration
+
+Before confirmatory data collection, freeze where feasible:
+
+- target claim IDs;
+- conditions and controls;
+- sampling plan;
+- holdout boundary;
+- primary endpoints;
+- exclusion rules;
+- blinding procedure;
+- analysis plan;
+- stopping rule;
+- disconfirming outcomes;
+- evaluator-independence requirement.
+
+After scored data are visible, do not silently rewrite those commitments. Record a deviation or create a new method/pilot version.
+
 ## Sources and evidence
 
-External sources relied upon by a research claim should receive a source-manifest entry. Evidence records should distinguish:
+External sources relied upon by a research claim should receive a source record or manifest entry. Evidence records should distinguish:
 
 - raw data or transcript;
 - transformation / preprocessing;
+- observation;
+- derived measurement;
 - interpretation;
 - summary.
 
 Do not label an interpretation as raw evidence.
 
 The Corpus Registry also assigns an `evidence_eligibility` gate. Respect it. A source may be preserved and indexed while remaining unsuitable for dataset ingestion or evidentiary use.
+
+Null and negative evidence should be preserved. Do not quietly omit a valid sample or run because it weakens the preferred explanation.
+
+## Provenance
+
+Any transformation that can affect interpretation should receive a `ProvenanceEvent` or equivalent record, including:
+
+- redaction;
+- deidentification;
+- label removal;
+- transcript slicing;
+- normalization;
+- annotation;
+- feature extraction;
+- embedding;
+- aggregation;
+- exclusion;
+- model-assisted coding.
+
+Where practical, preserve hashes or immutable version identifiers before and after transformation.
+
+## Evaluation independence
+
+Declare the evaluator level:
+
+- `I0-originator`
+- `I1-separated-role`
+- `I2-independent-reviewer`
+- `I3-external-replication`
+
+An I0 result can be useful for debugging, but it should not be presented as independent validation.
 
 ## Formal models
 
@@ -95,6 +170,8 @@ Instead, use repository-level metadata, commentary, claims, methods, and cross-l
 ## Runtime references
 
 When a concept has an implemented counterpart in another repository, link to it. Do not duplicate runtime code into EmergenceDocs unless the code itself is necessary research evidence.
+
+When a runtime generates research material, pin the implementation version/commit and export only the source/provenance metadata needed for the evidence chain. Runtime code does not receive evaluation authority by being the instrument.
 
 ## Moving files
 
