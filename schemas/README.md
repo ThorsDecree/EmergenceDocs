@@ -4,10 +4,11 @@ This directory contains the portable machine-readable contracts for the research
 
 ## Version
 
-Current contract version: **v0.1**  
+Core evidence-contract version: **v0.1**  
+RCIEP execution interchange extension: **v0.2**  
 JSON Schema dialect: **Draft 2020-12**
 
-## Schemas
+## Core evidence schemas
 
 - `source-record.schema.json`
 - `claim-record.schema.json`
@@ -19,6 +20,12 @@ JSON Schema dialect: **Draft 2020-12**
 - `pilot-preregistration.schema.json`
 
 Normative semantics and lineage rules live in `docs/EVIDENCE_CONTRACTS.md`.
+
+## RCIEP v0.2 execution schema
+
+- `rciep-raw-generation.schema.json`
+
+This execution-specific schema defines the minimum interchange record emitted by a runtime/export step before blinding. It intentionally does not define a research outcome. Extra runtime receipt/context metadata may be included.
 
 ## Compatibility
 
@@ -32,6 +39,8 @@ A record is v0.1-compatible when:
 
 Schema validity is necessary, not sufficient, for evidentiary validity.
 
+A v0.2 RCIEP raw-generation record must additionally contain the minimum fields required by `tools/rciep_prepare_packet.py` and validate against `rciep-raw-generation.schema.json`.
+
 ## Source compatibility
 
 The original `sources/source-manifest.jsonl` predates the v0.1 `SourceRecord` contract and remains canonical for the Corpus Registry snapshot. New source records should use `source-record.schema.json`; migration of the historical manifest can occur later without renumbering its `SRC-ED-*` identifiers.
@@ -40,13 +49,27 @@ The original `sources/source-manifest.jsonl` predates the v0.1 `SourceRecord` co
 
 ## First live contract package
 
-`pilots/RCIEP-001/` contains the first repository package using the v0.1 contracts:
+`pilots/RCIEP-001/` contains the first repository package using the evidence contracts:
 
 - `claim.json` -> `ClaimRecord`
 - `method.json` -> `MethodRecord`
 - `preregistration.json` -> `PilotPreregistration`
+- `v0.2/` -> frozen execution materials, configuration template, runbook, and execution state
+- `replication/` -> I3 replication packet specification/template
 
-No Observation/Evidence/Evaluation records are present yet because the pilot has not been run. That absence is intentional.
+Observation/Evidence/Evaluation records are intentionally absent until a valid local run occurs. Synthetic Stage A outputs qualify pipeline mechanics only and must not be promoted into confirmatory evidence for `ED-IDENT-001` or `ED-IDENT-002`.
+
+## Validation
+
+Local validation entrypoint:
+
+```bash
+python -m pip install jsonschema
+python tools/rciep_validate_contracts.py
+python -m py_compile tools/rciep_prepare_packet.py tools/rciep_analyze.py tools/rciep_validate_contracts.py
+```
+
+The local execution work order is `work-orders/WO-RCIEP-002.md`.
 
 ## Evolution
 
