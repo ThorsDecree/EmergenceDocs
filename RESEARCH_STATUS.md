@@ -64,7 +64,8 @@ The first RCIEP pilot is now preregistered under `pilots/RCIEP-001/`.
 Primary claim: `ED-IDENT-002`  
 Secondary claim: `ED-IDENT-001`  
 Method: `MTH-RCIEP-001`  
-Status: `preregistered-not-run`
+Status: `preregistered-not-run`  
+Frozen confirmatory commitments: `867cb0bc5ad0e4888aade795d76b04f8159be39b`
 
 The pilot tests blinded identity attribution under held-out prompts and identity-label perturbation with a size-matched generic-persona baseline. It freezes endpoints, exclusions, stopping rule, outcome mapping, holdout boundary, and evaluator separation before data collection.
 
