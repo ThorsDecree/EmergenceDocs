@@ -33,6 +33,7 @@ INSTANCE_MAP = [
 JSON_ONLY = [
     "pilots/RCIEP-001/v0.2/synthetic-scaffolds.json",
     "pilots/RCIEP-001/v0.2/execution-config.template.json",
+    "pilots/RCIEP-001/v0.2/materials.template.json",
     "pilots/RCIEP-001/v0.2/status.json",
     "pilots/RCIEP-001/replication/manifest.template.json",
 ]
