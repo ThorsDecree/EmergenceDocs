@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate EmergenceDocs v0.1 JSON Schemas and selected RCIEP instances.
+"""Validate EmergenceDocs v0.1/v0.2 JSON Schemas and selected RCIEP instances.
 
 Requires: pip install jsonschema
 """
@@ -21,6 +21,7 @@ SCHEMA_FILES = [
     "evaluation-record.schema.json",
     "provenance-event.schema.json",
     "pilot-preregistration.schema.json",
+    "rciep-raw-generation.schema.json",
 ]
 
 INSTANCE_MAP = [
@@ -32,6 +33,8 @@ INSTANCE_MAP = [
 JSON_ONLY = [
     "pilots/RCIEP-001/v0.2/synthetic-scaffolds.json",
     "pilots/RCIEP-001/v0.2/execution-config.template.json",
+    "pilots/RCIEP-001/v0.2/status.json",
+    "pilots/RCIEP-001/replication/manifest.template.json",
 ]
 
 JSONL_ONLY = [
